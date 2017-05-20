@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/BasicUI" version="1.0.0" viewmodes="maximized">
+    <access origin="http://daum.net" subdomains="true"></access>
+    <access origin="*" subdomains="true"></access>
+    <tizen:application id="e9g85qajV6.BasicUI" package="e9g85qajV6" required_version="3.0"/>
+    <content src="p00_signIn.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>BasicUI</name>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/location"/>
+    <tizen:profile name="mobile"/>
+</widget>
+
+<widget>
+   <tizen:feature name="http://tizen.org/feature/account"/>
+   <tizen:privilege name="http://tizen.org/privilege/account.read"/>
+	<tizen:privilege name="http://tizen.org/privilege/account.write"/>
+</widget>
+
+<tizen:account multiple-account-support="false">
+   <tizen:icon section="Account">account_provider_icon.png</tizen:icon>
+   <tizen:icon section="AccountSmall">account_provider_small_icon.png</tizen:icon>
+   <tizen:display-name xml:lang="en">AccountProviderExample</tizen:display-name>
+   <tizen:capability>http://tizen.org/account/capability/contact</tizen:capability>
+</tizen:account>
