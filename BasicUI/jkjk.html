@@ -1,10 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  
+  <script>
+  var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+//Open (or create) the database
+var openPark = indexedDB.open("park", 2);
+
+//Create the schema
+openPark.onupgradeneeded = function() {
+   var dbPark = openPark.result;
+   var storePark = dbPark.createObjectStore("parkData", {keyPath: "name"});
+   //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+};
+
+openPark.onsuccess = function() {
+   // Start a new transaction
+   var dbPark = openPark.result;
+   var txPark = dbPark.transaction("parkData", "readwrite");
+   var storePark = txPark.objectStore("parkData");
+   //var index = store.index("NameIndex");
+
+   // Add some data
+   store.put({name: "(주)꿈의동산",city: "가평군" , num_ride: "24"});
+   store.put({name: "별비치워터파크",city: "가평군" , num_ride: "7기(직선슬라이드 2, 회전형슬라이드 1, 튜브슬라이드 1, 수중모험놀이 1, 파도풀, 유수풀)");
+   store.put({name: "가평레일파크", city: "가평군" ,num_ride: "궤도자전거 4인용 60대, 2인용 15대"});
+   store.put({name: "친구들이 안전한 청개구리 물놀이 축제",city: "고양시" , num_ride: "워터정글짐1종,미니에어바운스2종"});
+   store.put({name: "MBC 텔레몬스터 대모험", num_ride: "안전검사 대상 3종, 안전검사 비대상 8종"});
+   store.put({name: "아이노리터",city: "고양시" , num_ride: "안전성검사대상1종,비검사대상1종"});
+   store.put({name: "메이블",city: "고양시" , num_ride: "원마운트호 1종"});
+   store.put({name: "일산디스코팡팡",city: "고양시" , num_ride: "1"});
+   store.put({name: "(주)뽀로로파크",city: "고양시" , num_ride: "미니기차(1종),미니에어바운스(1종), 플레이스페이스 정글인(1종)"});
+   store.put({name: "화정 디스코팡팡",city: "고양시" , num_ride: "1"});
+   store.put({name: "동원건설산업(주)",city: "과천시" , num_ride: "코끼리열차6종, 올리브열차6종"});
+   store.put({name: "광명코코몽어드벤처(세라핌엔터테인먼트)",city: "광명시" , num_ride: "5종8대(우주전투기1, 미니기차1, 붕붕뜀틀3, 미니에어바운스1, 코인라이더2)"});
+   store.put({name: "맥스팡",city: "광명시" , num_ride: "1"});
+   store.put({name: "(주)레드글로브 롯데프리미엄아울렛 광명점",city: "광명시" , num_ride: "회전목마"});
+   store.put({name: "(주)서브원 곤지암리조트",city: "광주시" , num_ride: "무궤도열차(코끼리열차)"});
+   store.put({name: "디팡존",city: "구리시" , num_ride: "타가다 디스코"});
+   store.put({name: "메리고라운드",city: "김포시" , num_ride: "안전성검사대상(1종):회전목마(1개)"});
+   store.put({name: "라바파크 어린이비전센터점",city: "남양주시" , num_ride: "안전성검사대상 5종(매직스윙, 관람차, 회전목마, 팡팡스윙, 미니기차), 비검사대상 2종(배터리범퍼카 10대, 밧데리카 16대)"});
+   store.put({name: "영화진흥위원회",city: "남양주시" , num_ride: null});
+   store.put({name: "남양주시청소년수련관",city: "남양주시" , num_ride: "안전성검사대상 5종"});
+   store.put({name: "유기농테마파크",city: "남양주시" , num_ride: "안전검사대상 1종(코코몽기차)"});
+   store.put({name: "아인스워터월드",city: "부천시" , num_ride: "안전성검사대상 1개, 안전성검사비대상 2개"});
+   store.put({name: "(주)부디",city: "부천시" , num_ride: "타가다디스코 1"});
+   store.put({name: "현대백화점 판교점",city: "성남시" , num_ride: "회전목마 1대"});
+   store.put({name: "화성열차(무궤도열차)",city: "수원시" , num_ride: "화성열차(무궤도열차)"});
+   store.put({name: "노리존",city: "수원시" , num_ride: "타가디스코1대, 미니농구 2대, 에어하키 1대, 인형뽑기 1대, 펀치 2대"});
+   store.put({name: "디스코 팡야",city: "수원시" , num_ride: "타가다디스코"});
+   store.put({name: "안산노리존",city: "안산시" , num_ride: "타가디스코 1대"});
+   store.put({name: "안산 호수공원 야외수영장",city: "안산시" , num_ride: "안전검사 대상 2종, 안전검사 비대상 1종"});
+   store.put({name: "농협중앙회 팜랜드",city: "안성시" , num_ride: "12종(안전성검사대상 유기기구 5종, 안전성검사대상이 아닌 유기기구 7종)"});
+   store.put({name: "노리존",city: "안양시" , num_ride: "2종(타가다 1대, 도라도라1대) 안전성검사 미대상 14종 20대"});
+   store.put({name: "큰숲안양워터랜드",city: "안양시" , num_ride: "5종(튜브슬라이드,스피드슬라이드,파도풀,유수풀,키즈풀(어린이수중놀이터)"});
+   store.put({name: "이랜드파크 코코몽키즈랜드",city: "안양시" , num_ride: "5종(미니기차, 코인라이더, 미니에어바운스, 미니농구, 망치치기)"});
+   store.put({name: "안양시시설관리공단",city: "안양시" , num_ride: "원통형슬라이드, 직선형슬라이드"});
+   store.put({name: "(주)아트밸리",city: "양주시" , num_ride: NULL});
+   store.put({name: "청미원 눈썰매장",city: "양주시" , num_ride: "1"});
+   store.put({name: "두리랜드",city: "양주시" , num_ride: "81"});
+   store.put({name: "(주) 양평 레일바이크",city: "양평군" , num_ride: "1종 50대(레일바이크)"});
+   store.put({name: "위드엔터테인 여주점",city: "여주시" , num_ride: "회전목마 1종(직경 6m, 높이 5.6m)"});
+   store.put({name: "브릭웍스",city: "여주시" , num_ride: "바운스 스핀 1종(직경 9.1m, 높이 3.5m)"});
+   store.put({name: "리버스랜드",city: "여주시" , num_ride: "안전성검사대상기구 10종"});
+   store.put({name: "로만바스",city: "용인시" , num_ride: "5종(파도풀, 튜브슬라이드, 바디슬라이드, 스페이스보올, 비치보트슬라이드)"});
+   store.put({name: "경기의왕레일파크(주)",city: "의왕시" , num_ride: "레일바이크 1종 100대"});
+   store.put({name: "해피팡팡랜드",city: "의정부시" , num_ride: "디스코팡팡(타가다디스코)"});
+   store.put({name: "(주)로쿠인터내셔널 롯데이천점",city: "이천시" , num_ride: "안전성검사 대상[무당벌레(점프라이드)],안전성검사 비대상(미니기차,밧데리범퍼카)"});
+   store.put({name: "(주)아이플레이코리아",city: "이천시" , num_ride: "회전목마 1, 무궤도열차 1"});
+   store.put({name: "팡팡디스코",city: "이천시" , num_ride: "1종(타가디스코)"});
+   store.put({name: "테르메덴",city: "이천시" , num_ride: "안전성 검사대상( 마운틴 슬라이드 1대, 바디슬라이드 2대)"});
+   store.put({name: "(주)바이오 피드백",city: "이천시" , num_ride: "5종"});
+   store.put({name: "티놀자 마장 휴게점",city: "이천시" , num_ride: "범퍼카, 미니바이킹"});
+   store.put({name: "(재)경기영어마을",city: "파주시" , num_ride: "안전성검사대상 유기기구 1종"});
+   store.put({name: "주식회사 씨씨앤피",city: "파주시" , num_ride: "안전성 검사 대상 2개(회전목마, 무궤도열차)"});
+   store.put({name: "평화랜드",city: "파주시" , num_ride: null});
+   store.put({name: "도라산평화공원관리사업소 ->파주시청(제3땅굴)",city: "파주시" , num_ride: null});
+   store.put({name: "임진강리조트",city: "파주시" , num_ride: "안전성검사대상 유기기구 5종 14대"});
+   store.put({name: "우리엔터테인",city: "파주시" , num_ride: "미니열차 1종(L=10.414m, 최고높이 1.79m)"});
+   store.put({name: "(주)엠에스21",city: "파주시" , num_ride: "대형에어바운스 1대, 미니에어바운스 2대"});
+   store.put({name: "디스코 팡야",city: "평택시" , num_ride: "1대"});
+   store.put({name: "평택시무봉산청소년수련원(진위천시민유원지)",city: "평택시" , num_ride: "안전검사대상 유기기구 2종, 비검사대상 2종"});
+   store.put({name: "호수랜드",city: "포천시" , num_ride: "미니아스트로, 미니바이킹, 미니스윙거"});
+   store.put({name: "산정랜드",city: "포천시" , num_ride: "총 13종(65대) - 검사:11종 56대, 비검사:2종 9대"});
+   store.put({name: "제부비치랜드",city: "화성시" , num_ride: null});
+   store.put({name: "하피랜드",city: "화성시" , num_ride: "안전성검사대상 3종(바디슬라이드,유수풀,아쿠아플레이)"});
+   
+   /*
+   // Query the data
+   var getJungyun = store.get(1);
+   var getJungyun = index.get(["Eum", "Jungyun"]); //된된다된다!
+   var getJeongKyeong = index.get(["Kang", "JeongKyeong"]);
+   var getJeongKyeong = store.get(2); //프라이머리키로 접근 된다된다!
+
+   getJungyun.onsuccess = function() {
+       console.log(getJungyun.result.name.first);  
+   };
+
+   getJeongKyeong.onsuccess = function() {
+       console.log(getJeongKyeong.result.name.first);   
+   };
+   */
+   
+   // Close the db when the transaction is done
+   txPark.oncomplete = function() {
+       dbPark.close();
+   };
+};
+
+
+
+//Open (or create) the database
+var openHanOk = indexedDB.open("HanOk", 2);
+
+//Create the schema
+openHanOk.onupgradeneeded = function() {
+   var dbHanOk = open.result;
+   var storeHanOk = db.createObjectStore("HanOkData", {keyPath: "name"});
+   //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+};
+
+openHanOk.onsuccess = function() {
+   // Start a new transaction
+   var dbHanOk = openHanOk.result;
+   var txHanOk = dbHanOk.transaction("trailData", "readwrite");
+   var storeHanOk = txHanOk.objectStore("trailData");
+   //var index = store.index("NameIndex");
+
+   store.put({name: "오가물",city: "인천광역시", address: "인천광역시 중구 용유로380번길 21(남북동 868)" , tell: "032-746-9509"});
+   store.put({name: "자미궁",city: "인천광역시", address: "인천광역시 서구 원당대로819번길 38 (원당동)" , tell: "032-567-1188"});
+   store.put({name: "남취당의한옥이야기",city: "인천광역시", address: "인천광역시 강화군 화도면 해안남로 1066(사기리 84번지)" , tell: null});
+   store.put({name: "담담각",city: "인천광역시", address: "인천광역시 강화군 하점면 고려산로 285번길 14-29(삼거리 724-1)" , tell: "032-933-8737"});
+   store.put({name: "전통한옥펜션보경",city: "인천광역시", address: "인천광역시 옹진군 영흥면 영흥서로 30" , tell: "032-329-1351"});
+   store.put({name: "장보고 한옥펜션",city: "인천광역시", address: "인천광역시 강화군 송해면 강화대로 833번길 44-30" , tell: null});
+   store.put({name: "옛날에금잔디",city: "인천광역시", address: "인천광역시 강화군 내가면 강화서로  225번길 18-1" , tell: "070-8262-6731"});
+   store.put({name: "남문한옥 대명헌",city: "인천광역시", address: "인천광역시 강화군 강화읍 남문안길 7" , tell: "032-934-2021"});
+   store.put({name: "교동마님댁",city: "인천광역시", address: "인천광역시 강화군 교동면 교동북로467번길 13" , tell: null});
+
+
+   // Close the db when the transaction is done
+   txHanOk.oncomplete = function() {
+       dbHanOk.close();
+   };
+};
+      </script>
+
 </head>
 <body>
-뀨 ㅅㅂ
+  
+-경기도 유원지 현황
+
+-인천광역시 한옥체험 현황
 </body>
 </html>
