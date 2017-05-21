@@ -11,7 +11,7 @@ var openPark = indexedDB.open("park", 2);
 //Create the schema
 openPark.onupgradeneeded = function() {
    var dbPark = openPark.result;
-   var storePark = dbPark.createObjectStore("parkData", {keyPath: "name"});
+   var store = dbPark.createObjectStore("parkData", {keyPath: "name"});
    //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
 };
 
@@ -19,12 +19,12 @@ openPark.onsuccess = function() {
    // Start a new transaction
    var dbPark = openPark.result;
    var txPark = dbPark.transaction("parkData", "readwrite");
-   var storePark = txPark.objectStore("parkData");
-   //var index = store.index("NameIndex");
+   var store = txPark.objectStore("parkData");
+  // var index = store.index("NameIndex");
 
    // Add some data
    store.put({name: "(주)꿈의동산",city: "가평군" , num_ride: "24"});
-   store.put({name: "별비치워터파크",city: "가평군" , num_ride: "7기(직선슬라이드 2, 회전형슬라이드 1, 튜브슬라이드 1, 수중모험놀이 1, 파도풀, 유수풀)");
+   store.put({name: "별비치워터파크",city: "가평군" , num_ride: "7기(직선슬라이드 2, 회전형슬라이드 1, 튜브슬라이드 1, 수중모험놀이 1, 파도풀, 유수풀)"});
    store.put({name: "가평레일파크", city: "가평군" ,num_ride: "궤도자전거 4인용 60대, 2인용 15대"});
    store.put({name: "친구들이 안전한 청개구리 물놀이 축제",city: "고양시" , num_ride: "워터정글짐1종,미니에어바운스2종"});
    store.put({name: "MBC 텔레몬스터 대모험", num_ride: "안전검사 대상 3종, 안전검사 비대상 8종"});
@@ -87,17 +87,32 @@ openPark.onsuccess = function() {
    store.put({name: "제부비치랜드",city: "화성시" , num_ride: null});
    store.put({name: "하피랜드",city: "화성시" , num_ride: "안전성검사대상 3종(바디슬라이드,유수풀,아쿠아플레이)"});
    
+
+   function getopenParkreadAll(){
+	var objectStore = db.transaction("parkData").objectStore("parkData");
+
+	objectStore.openCursor().onsuccess = function(event){
+	var cursor = event.target.result;
+	if(cursor){
+	alert("Name:"+cursor.value.name+" city:"+cursor.value.city+" num_ride:"+cursor.value.num_ride);
+	cursor.continue(); 
+		}
+	else{
+	alert("No more entries!");
+		}
+		};
+	  }
    /*
    // Query the data
-   var getJungyun = store.get(1);
-   var getJungyun = index.get(["Eum", "Jungyun"]); //된된다된다!
-   var getJeongKyeong = index.get(["Kang", "JeongKyeong"]);
-   var getJeongKyeong = store.get(2); //프라이머리키로 접근 된다된다!
+   var getopenPark = store.get(1);
+   var getopenPark = index.get(["Eum", "Jungyun"]); //된된다된다!
+  // var getJeongKyeong = index.get(["Kang", "JeongKyeong"]);
+  // var getJeongKyeong = store.get(2); //프라이머리키로 접근 된다된다!
 
-   getJungyun.onsuccess = function() {
-       console.log(getJungyun.result.name.first);  
+   getopenPark.onsuccess = function() {}
+       console.log(getopenPark.result.name);  
    };
-
+   
    getJeongKyeong.onsuccess = function() {
        console.log(getJeongKyeong.result.name.first);   
    };
@@ -148,8 +163,6 @@ openHanOk.onsuccess = function() {
 
 </head>
 <body>
-하.........ㅅㅂ
--경기도 유원지 현황
--인천광역시 한옥체험 현황
+<button onclick="getopenParkreadAll()">HanOk from IDB</button>
 </body>
 </html>
