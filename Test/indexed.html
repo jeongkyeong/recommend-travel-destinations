@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+  var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+//Open (or create) the database
+var open = indexedDB.open("HateyouDatabase", 2);
+
+//Create the schema
+open.onupgradeneeded = function() {
+   var db = open.result;
+   var store = db.createObjectStore("MyObjectStore", {keyPath: "id"});
+   var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+};
+
+open.onsuccess = function() {
+   // Start a new transaction
+   var db = open.result;
+   var tx = db.transaction("MyObjectStore", "readwrite");
+   var store = tx.objectStore("MyObjectStore");
+   var index = store.index("NameIndex");
+
+   // Add some data
+   store.put({id: 1, name: {first: "Jungyun", last: "Eum"}, age: 25});
+   store.put({id: 2, name: {first: "JeongKyeong", last: "Kang"}, age: 24});
+   
+   // Query the data
+   var getJungyun = store.get(1);
+  // var getJungyun = index.get(["Eum", "Jungyun"]); //된된다된다!
+   var getJeongKyeong = index.get(["Kang", "JeongKyeong"]);
+  // var getJeongKyeong = store.get(2); //프라이머리키로 접근 된다된다!
+
+   getJungyun.onsuccess = function() {
+       console.log(getJungyun.result.name.first);  
+   };
+
+   getJeongKyeong.onsuccess = function() {
+       console.log(getJeongKyeong.result.name.first);   
+   };
+
+   // Close the db when the transaction is done
+   tx.oncomplete = function() {
+       db.close();
+   };
+};
+      </script>
+
+</head>
+<body>
+  getJungyun.onsuccess();
+
+</body>
+</html>
