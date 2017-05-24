@@ -18,8 +18,8 @@
   openKyounggiTemple.onsuccess = function() {
      // Start a new transaction
      var dbKyounggiTemple = openKyounggiTemple.result;
-     var txtemple = dbtemple.transaction("KyounggiTempleData", "readwrite");
-     var store = txtemple.objectStore("KyounggiTempleData");
+     var txKyounggiTemple = dbKyounggiTemple.transaction("KyounggiTempleData", "readwrite");
+     var store = txKyounggiTemple.objectStore("KyounggiTempleData");
      //var index = store.index("NameIndex");
 
 	
