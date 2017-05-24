@@ -12,7 +12,7 @@
  	opentemple.onupgradeneeded = function() {
      var dbtemple = opentemple.result;
      var store = dbtemple.createObjectStore("templeData", {keyPath: "id"});
-     //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+     var index = store.createIndex("id","city","name","address","longtitude","latitude");
   };
 
   opentemple.onsuccess = function() {
@@ -20,108 +20,108 @@
      var dbtemple = opentemple.result;
      var txtemple = dbtemple.transaction("templeData", "readwrite");
      var store = txtemple.objectStore("templeData");
-     //var index = store.index("NameIndex");
+     var index = store.index("NameIndex");
 
 	
 //경기도 전통사찰 현황
-store.put({id: 1, city: "가평군", name: "현등사", address: "경기도 가평군 조종면 하판리", longtitude: , latitude: });
+store.put({id: 1, city: "가평군", name: "현등사", address: "경기도 가평군 조종면 하판리", longtitude: "", latitude: ""});
 store.put({id: 2, city: "고양시", name: "중흥사", address: "경기도 고양시 덕양구 대서문길 393	", longtitude:126.97654894, latitude:37.645966741 });
 store.put({id: 3, city: "고양시", name: "국녕사", address: "경기도 고양시 덕양구 대서문길 268	", longtitude:126.96236218	 , latitude:37.646854682 });
 store.put({id: 4, city: "고양시", name: "상운사", address: "경기도 고양시 덕양구 대서문길 197-22", longtitude:126.9690205, latitude:37.656380033});
-store.put({id: 5, city: "고양시", name: "흥국사", address: "경기도 고양시 덕양구 흥국사길 82 (지축동)", longtitude: , latitude: });
+store.put({id: 5, city: "고양시", name: "흥국사", address: "경기도 고양시 덕양구 흥국사길 82 (지축동)", longtitude: "", latitude:"" });
 store.put({id: 6, city: "고양시", name: "무량사", address: "경기도 고양시 덕양구 대서문길 184 (북한동)	", longtitude:126.95910616 , latitude:37.653691881});
 store.put({id: 7, city: "고양시", name: "봉성암", address: "경기도 고양시 덕양구 대서문길 443	", longtitude:126.98119472, latitude: 37.645553241});
 store.put({id: 8, city: "고양시", name: "태고사", address: "경기도 고양시 덕양구 대서문길 406	", longtitude:126.97821474, latitude:37.645471568});
 store.put({id: 9, city: "고양시", name: "노적사", address: "경기도 고양시 덕양구 대서문길 311-35	", longtitude:126.97294431, latitude:37.649470657});
-store.put({id: 10, city: "고양시", name: "아미타사", address: "경기도 고양시 덕양구 대서문길 145-63 (북한동)	", longtitude: , latitude: });
-store.put({id: 11, city: "과천시", name: "보광사", address: "경기도 과천시 교육원로 41 (갈현동)	", longtitude: , latitude: });
+store.put({id: 10, city: "고양시", name: "아미타사", address: "경기도 고양시 덕양구 대서문길 145-63 (북한동)	", longtitude: "", latitude:"" });
+store.put({id: 11, city: "과천시", name: "보광사", address: "경기도 과천시 교육원로 41 (갈현동)	", longtitude:"" , latitude: ""});
 store.put({id: 12, city: "과천시", name: "연주암", address: "경기도 과천시 자하동길 63	", longtitude:126.96555799, latitude:37.441692139});
 store.put({id: 13, city: "광주시", name: "개원사", address: "경기도 광주시 중부면 남한산성로 731-73	", longtitude:127.18656562, latitude:37.4748292});
 store.put({id: 14, city: "광주시", name: "장경사", address: "경기도 광주시 남한산성면 남한산성로 676	", longtitude:127.19775864, latitude:37.47524375});
-store.put({id: 15, city: "광주시", name: "백련암", address: "경기도 광주시 도척면 도척로 982-118	", longtitude: , latitude: });
+store.put({id: 15, city: "광주시", name: "백련암", address: "경기도 광주시 도척면 도척로 982-118	", longtitude:"" , latitude: ""});
 store.put({id: 16, city: "광주시", name: "극락사", address: "경기도 광주시 오포읍 양촌길 268-1	", longtitude:127.27205957, latitude:37.37225746});
-store.put({id: 17, city: "광주시", name: "명성암", address: "경기도 광주시 남종면 산수로 1876-34	", longtitude: , latitude: });
-store.put({id: 18, city: "광주시", name: "망월사", address: "경기도 광주시 중부면 남한산성로 680	", longtitude: , latitude: });
-store.put({id: 19, city: "군포시", name: "수리사", address: "경기도 군포시 속달로 347-181 (속달동)	", longtitude: , latitude: });
-store.put({id: 21, city: "김포시", name: "광은사", address: "경기도 김포시 대곶면 약암로 872-80	", longtitude: , latitude: });
-store.put({id: 22, city: "김포시", name: "문수사", address: "", longtitude: , latitude: });
-store.put({id: 23, city: "김포시", name: "용화사", address: "경기도 김포시 금포로 1487-5 (운양동)	", longtitude: , latitude: });
-store.put({id: 24, city: "김포시", name: "금정사", address: "경기도 김포시 승가로 125 (풍무동)	", longtitude: , latitude: });
+store.put({id: 17, city: "광주시", name: "명성암", address: "경기도 광주시 남종면 산수로 1876-34	", longtitude: "", latitude:"" });
+store.put({id: 18, city: "광주시", name: "망월사", address: "경기도 광주시 중부면 남한산성로 680	", longtitude: "", latitude: ""});
+store.put({id: 19, city: "군포시", name: "수리사", address: "경기도 군포시 속달로 347-181 (속달동)	", longtitude:"N/A" , latitude: ""});
+store.put({id: 21, city: "김포시", name: "광은사", address: "경기도 김포시 대곶면 약암로 872-80	", longtitude: "", latitude: ""});
+store.put({id: 22, city: "김포시", name: "문수사", address: "", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 23, city: "김포시", name: "용화사", address: "경기도 김포시 금포로 1487-5 (운양동)	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 24, city: "김포시", name: "금정사", address: "경기도 김포시 승가로 125 (풍무동)	", longtitude: "N/A", latitude: "N/A"});
 store.put({id: 25, city: "남양주시", name: "묘적사", address: "경기도 남양주시 와부읍 수레로661번길 174	", longtitude:127.26172544, latitude:37.6233417});
-store.put({id: 26, city: "남양주시", name: "불암사", address: "경기도 남양주시 별내면 불암산로 190	", longtitude: , latitude: });
-store.put({id: 27, city: "남양주시", name: "봉선사", address: "경기도 남양주시 진접읍 봉선사길 32	", longtitude: , latitude: });
+store.put({id: 26, city: "남양주시", name: "불암사", address: "경기도 남양주시 별내면 불암산로 190	", longtitude:"N/A" , latitude:"N/A" });
+store.put({id: 27, city: "남양주시", name: "봉선사", address: "경기도 남양주시 진접읍 봉선사길 32	", longtitude:"N/A" , latitude: "N/A"});
 store.put({id: 28, city: "남양주시", name: "견성암", address: "경기도 남양주시 진건읍 진건오남로390번길 284	", longtitude:127.22099695	, latitude:37.675409891});
-store.put({id: 29, city: "남양주시", name: "석천암", address: "", longtitude: , latitude: });
-store.put({id: 30, city: "남양주시", name: "봉영사", address: "경기도 남양주시 진접읍 내각2로 84-77	", longtitude: , latitude: });
-store.put({id: 31, city: "남양주시", name: "내원암", address: "경기도 남양주시 별내면 순화궁로909번길 104	", longtitude: , latitude: });
-store.put({id: 32, city: "남양주시", name: "수종사", address: "경기도 남양주시 조안면 북한강로433번길 186	", longtitude: , latitude: });
-store.put({id: 33, city: "남양주시", name: "천보사", address: "", longtitude: , latitude: });
-store.put({id: 34, city: "남양주시", name: "보광사", address: "경기도 남양주시 화도읍 가곡로 198	", longtitude: , latitude: });
+store.put({id: 29, city: "남양주시", name: "석천암", address: "", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 30, city: "남양주시", name: "봉영사", address: "경기도 남양주시 진접읍 내각2로 84-77	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 31, city: "남양주시", name: "내원암", address: "경기도 남양주시 별내면 순화궁로909번길 104	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 32, city: "남양주시", name: "수종사", address: "경기도 남양주시 조안면 북한강로433번길 186	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 33, city: "남양주시", name: "천보사", address: "", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 34, city: "남양주시", name: "보광사", address: "경기도 남양주시 화도읍 가곡로 198	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 35, city: "남양주시", name: "흥국사", address: "경기도 남양주시 덕릉로1071번길 58	", longtitude:127.09879101	, latitude:37.684636268});
 store.put({id: 36, city: "동두천시", name: "자재암", address: "경기도 동두천시 평화로2910번길 406-65	", longtitude:127.08639828, latitude:37.945324969});
-store.put({id: 37, city: "부천시", name: "석왕사", address: "", longtitude: , latitude: });
-store.put({id: 38, city: "성남시", name: "약사사", address: "경기도 성남시 중원구 산성대로625번길 22 (은행동)	", longtitude: , latitude: });
+store.put({id: 37, city: "부천시", name: "석왕사", address: "", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 38, city: "성남시", name: "약사사", address: "경기도 성남시 중원구 산성대로625번길 22 (은행동)	", longtitude:"N/A" , latitude: "N/A"});
 store.put({id: 39, city: "성남시", name: "망경암", address: "경기도 성남시 수정구 태평로55번길 72	", longtitude:127.13706789, latitude:37.453352907});
 store.put({id: 41, city: "성남시", name: "봉국사", address: "경기도 성남시 수정구 태평로 79	", longtitude:127.13518696, latitude:37.450606978});
-store.put({id: 42, city: "수원시", name: "수원사", address: "경기도 수원시 팔달구 수원천로 300 (남수동)	", longtitude: , latitude: });
-store.put({id: 43, city: "수원시", name: "봉녕사", address: "경기도 수원시 팔달구 창룡대로 236-54 (우만동)	", longtitude: , latitude: });
+store.put({id: 42, city: "수원시", name: "수원사", address: "경기도 수원시 팔달구 수원천로 300 (남수동)	", longtitude:"N/A" , latitude:"N/A" });
+store.put({id: 43, city: "수원시", name: "봉녕사", address: "경기도 수원시 팔달구 창룡대로 236-54 (우만동)	", longtitude:"N/A" , latitude:"N/A" });
 store.put({id: 44, city: "수원시", name: "청련암", address: "경기도 수원시 장안구 수일로 335	", longtitude:127.02289074, latitude:37.300732866});
 store.put({id: 45, city: "안산시", name: "팔달사", address: "경기도 수원시 팔달구 행궁로 68	", longtitude:127.01513817, latitude:37.276316127});
 store.put({id: 46, city: "안산시", name: "묘수사", address: "경기도 수원시 팔달구 화서문로71번길 2-6	", longtitude:127.01603062	, latitude:37.286101182});
 store.put({id: 47, city: "안성시", name: "쌍계사", address: "경기도 안산시 단원구 대부황금로 1171	", longtitude:126.57862568	, latitude:37.262843125});
-store.put({id: 48, city: "안성시", name: "화림선원", address: "경기도 안산시 상록구 도매시장로 140 (일동)	", longtitude: , latitude: });
+store.put({id: 48, city: "안성시", name: "화림선원", address: "경기도 안산시 상록구 도매시장로 140 (일동)	", longtitude: "N/A", latitude: "N/A"});
 store.put({id: 49, city: "안성시", name: "청룡사", address: "경기도 안성시 서운면 청룡길 140	", longtitude:127.2888202	, latitude:36.913559251});
 store.put({id: 50, city: "안성시", name: "석남사", address: "경기도 안성시 금광면 상촌새말길 3-120	", longtitude:127.30699055, latitude:36.939645379});
 store.put({id: 51, city: "안성시", name: "용화사", address: "경기도 안성시 미양면 법전길 260-31	", longtitude:127.20830174	, latitude:36.945750092});
 store.put({id: 52, city: "안성시", name: "운수암", address: "경기도 안성시 양성면 성하길 80-63	", longtitude:127.16969	, latitude:37.036350121});
 store.put({id: 53, city: "안성시", name: "청원사", address: "경기도 안성시 원곡면 통심길 16-102	", longtitude:127.17382594, latitude:37.071323404});
 store.put({id: 54, city: "안성시", name: "칠장사", address: "경기도 안성시 죽산면 칠장로 399-18	", longtitude:127.39764574	, latitude:37.026385662});
-store.put({id: 55, city: "안성시", name: "염불사", address: "경기도 안양시 만안구 예술공원로245번길 150 (석수동)	", longtitude: , latitude: });
+store.put({id: 55, city: "안성시", name: "염불사", address: "경기도 안양시 만안구 예술공원로245번길 150 (석수동)	", longtitude:"N/A" , latitude:"N/A" });
 store.put({id: 56, city: "안성시", name: "안양사", address: "경기도 안양시 만안구 예술공원로131번길 103	", longtitude:126.92403935	, latitude:37.422408281});
 store.put({id: 57, city: "안성시", name: "삼막사", address: "경기도 안양시 만안구 삼막로 478	", longtitude:126.93603754	, latitude:37.434381008});
 store.put({id: 58, city: "양주시", name: "망해암", address: "", longtitude:126.91990256	, latitude:37.414026099});
-store.put({id: 59, city: "양주시", name: "백화암", address: "경기도 양주시 부흥로 1325-194 (유양동)	", longtitude: , latitude: });
-store.put({id: 60, city: "양주시", name: "석굴암", address: "", longtitude: , latitude: });
-store.put({id: 61, city: "양평군", name: "회암사", address: "경기도 양주시 회암사길 281 (회암동)	", longtitude: , latitude: });
+store.put({id: 59, city: "양주시", name: "백화암", address: "경기도 양주시 부흥로 1325-194 (유양동)	", longtitude:"N/A" , latitude: "N/A"});
+store.put({id: 60, city: "양주시", name: "석굴암", address: "", longtitude:"N/A" , latitude: "N/A"});
+store.put({id: 61, city: "양평군", name: "회암사", address: "경기도 양주시 회암사길 281 (회암동)	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 62, city: "양평군", name: "용문사", address: "경기도 양평군 용문면 용문산로 782	", longtitude:127.57068988	, latitude:37.550155031});
 store.put({id: 63, city: "양평군", name: "사나사", address: "경기도 양평군 옥천면 사나사길 329	", longtitude:127.50630545	, latitude:37.537436958});
-store.put({id: 64, city: "양평군", name: "대성사", address: "경기도 양평군 지평면 역말4길 58	", longtitude: , latitude: });
-store.put({id: 65, city: "여주군", name: "상원사", address: "경기도 양평군 용문면 상원사길 292	", longtitude: , latitude: });
-store.put({id: 66, city: "여주군", name: "신륵사", address: "", longtitude: , latitude: });
-store.put({id: 67, city: "여주군", name: "흥왕사", address: "", longtitude: , latitude: });
+store.put({id: 64, city: "양평군", name: "대성사", address: "경기도 양평군 지평면 역말4길 58	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 65, city: "여주군", name: "상원사", address: "경기도 양평군 용문면 상원사길 292	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 66, city: "여주군", name: "신륵사", address: "", longtitude:"N/A" , latitude: "N/A"});
+store.put({id: 67, city: "여주군", name: "흥왕사", address: "", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 68, city: "여주군", name: "대법사", address: "경기도 여주시 가남읍 안금3길 3-43	", longtitude:127.60466685	, latitude:37.228754307});
 store.put({id: 68, city: "여주군", name: "대성사", address: "경기도 여주시 금사면 발림길 89-47	", longtitude:127.51117261	, latitude:37.390789098});
 store.put({id: 69, city: "연천군", name: "원심원사", address: "경기도 연천군 신서면 동내로970번길 32-268	", longtitude:127.15260712	, latitude:38.128243139});
-store.put({id: 70, city: "오산시", name: "보적사", address: "경기도 오산시 독산성로269번길 144 (지곶동)	", longtitude: , latitude: });
-store.put({id: 71, city: "용인시", name: "동도사", address: "경기도 용인시 처인구 이동면 경기동로1024번길 9-49	", longtitude: , latitude: });
-store.put({id: 72, city: "용인시", name: "백련사", address: "경기도 용인시 처인구 포곡읍 에버랜드로456번길 290", longtitude: , latitude: });
-store.put({id: 73, city: "용인시", name: "용덕사", address: "경기도 용인시 처인구 이동면 이원로 471-41	", longtitude: , latitude: });
+store.put({id: 70, city: "오산시", name: "보적사", address: "경기도 오산시 독산성로269번길 144 (지곶동)	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 71, city: "용인시", name: "동도사", address: "경기도 용인시 처인구 이동면 경기동로1024번길 9-49	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 72, city: "용인시", name: "백련사", address: "경기도 용인시 처인구 포곡읍 에버랜드로456번길 290", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 73, city: "용인시", name: "용덕사", address: "경기도 용인시 처인구 이동면 이원로 471-41	", longtitude: "N/A", latitude: "N/A"});
 store.put({id: 74, city: "의왕시", name: "청계사", address: "경기도 의왕시 청계로 475	", longtitude:127.03502901	, latitude:37.411744278});
-store.put({id: 75, city: "의왕시", name: "백운사", address: "경기도 의왕시 왕곡로 323 (왕곡동)	", longtitude: , latitude: });
-store.put({id: 76, city: "의정부시", name: "석림사", address: "경기도 의정부시 동일로122번길 177 (장암동)	", longtitude: , latitude: });
+store.put({id: 75, city: "의왕시", name: "백운사", address: "경기도 의왕시 왕곡로 323 (왕곡동)	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 76, city: "의정부시", name: "석림사", address: "경기도 의정부시 동일로122번길 177 (장암동)	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 77, city: "의정부시", name: "원효사", address: "경기도 의정부시 망월로28번길 356	", longtitude:127.02821662	, latitude:37.709160709});
-store.put({id: 78, city: "의정부시", name: "미륵암", address: "경기도 의정부시 고산로65번길 94 (고산동)	", longtitude: , latitude: });
+store.put({id: 78, city: "의정부시", name: "미륵암", address: "경기도 의정부시 고산로65번길 94 (고산동)	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 79, city: "의정부시", name: "망월사", address: "경기도 의정부시 망월로28번길 211-500	", longtitude:127.02132047, latitude:37.704657182});
-store.put({id: 80, city: "의정부시", name: "회룡사", address: "경기도 의정부시 전좌로155번길 262 (호원동)	", longtitude: , latitude: });
-store.put({id: 81, city: "의정부시", name: "성불사", address: "경기도 의정부시 호국로1114번길 142 (가능동)	", longtitude: , latitude: });
-store.put({id: 82, city: "이천시", name: "신흥사", address: "경기도 이천시 장호원읍 경충대로519번길 246-314	", longtitude: , latitude: });
-store.put({id: 83, city: "이천시", name: "영월암", address: "경기도 이천시 경충대로2709번길 388 (관고동)	", longtitude: , latitude: });
-store.put({id: 84, city: "이천시", name: "연화정사", address: "경기도 이천시 설성면 설성로570번길 50-319	", longtitude: , latitude: });
+store.put({id: 80, city: "의정부시", name: "회룡사", address: "경기도 의정부시 전좌로155번길 262 (호원동)	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 81, city: "의정부시", name: "성불사", address: "경기도 의정부시 호국로1114번길 142 (가능동)	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 82, city: "이천시", name: "신흥사", address: "경기도 이천시 장호원읍 경충대로519번길 246-314	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 83, city: "이천시", name: "영월암", address: "경기도 이천시 경충대로2709번길 388 (관고동)	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 84, city: "이천시", name: "연화정사", address: "경기도 이천시 설성면 설성로570번길 50-319	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 85, city: "이천시", name: "영원사", address: "경기도 이천시 백사면 원적로869번길 309-52	", longtitude:127.46257003, latitude:37.353677388});
-store.put({id: 86, city: "파주시", name: "용상사", address: "경기도 파주시 월롱면 용상골길 403	", longtitude: , latitude: });
-store.put({id: 87, city: "파주시", name: "보광사", address: "경기도 파주시 광탄면 보광로474번길 87	", longtitude: , latitude: });
-store.put({id: 88, city: "파주시", name: "용암사", address: "경기도 파주시 광탄면 혜음로 742-28	", longtitude: , latitude: });
-store.put({id: 89, city: "파주시", name: "검단사", address: "경기도 파주시 탄현면 필승로 292-33	", longtitude: , latitude: });
-store.put({id: 90, city: "평택시", name: "만기사", address: "경기도 평택시 진위면 진위로 181-82	", longtitude: , latitude: });
-store.put({id: 91, city: "평택시", name: "심복사", address: "경기도 평택시 현덕면 덕목5길 47-24	", longtitude: , latitude: });
-store.put({id: 92, city: "평택시", name: "약사사", address: "경기도 평택시 안중읍 용성3길 120-10	", longtitude: , latitude: });
+store.put({id: 86, city: "파주시", name: "용상사", address: "경기도 파주시 월롱면 용상골길 403	", longtitude: "N/A", latitude:"N/A" });
+store.put({id: 87, city: "파주시", name: "보광사", address: "경기도 파주시 광탄면 보광로474번길 87	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 88, city: "파주시", name: "용암사", address: "경기도 파주시 광탄면 혜음로 742-28	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 89, city: "파주시", name: "검단사", address: "경기도 파주시 탄현면 필승로 292-33	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 90, city: "평택시", name: "만기사", address: "경기도 평택시 진위면 진위로 181-82	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 91, city: "평택시", name: "심복사", address: "경기도 평택시 현덕면 덕목5길 47-24	", longtitude:"N/A" , latitude: "N/A"});
+store.put({id: 92, city: "평택시", name: "약사사", address: "경기도 평택시 안중읍 용성3길 120-10	", longtitude:"N/A" , latitude: "N/A"});
 store.put({id: 93, city: "평택시", name: "보국사", address: "경기도 평택시 서탄면 장등안길 38	", longtitude:127.02142567	, latitude:37.075175497});
-store.put({id: 94, city: "평택시", name: "수도사", address: "경기도 평택시 포승읍 호암길 58	", longtitude: , latitude: });
-store.put({id: 95, city: "평택시", name: "자비사", address: "경기도 평택시 팽성읍 동서촌로 137	", longtitude: , latitude: });
+store.put({id: 94, city: "평택시", name: "수도사", address: "경기도 평택시 포승읍 호암길 58	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 95, city: "평택시", name: "자비사", address: "경기도 평택시 팽성읍 동서촌로 137	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 96, city: "평택시", name: "서천사", address: "경기도 평택시 고덕면 방축4길 22-49	", longtitude: 127.04414286	, latitude:37.015573476});
 store.put({id: 97, city: "포천시", name: "흥룡사", address: "경기도 포천시 이동면 포화로 236-73	", longtitude:127.40996494, latitude:38.071426438});
-store.put({id: 98, city: "포천시", name: "원통사", address: "경기도 포천시 일동면 화동로 738-1	", longtitude: , latitude: });
-store.put({id: 99, city: "포천시", name: "왕산사", address: "경기도 포천시 호병골길 193 (신읍동)	", longtitude: , latitude: });
+store.put({id: 98, city: "포천시", name: "원통사", address: "경기도 포천시 일동면 화동로 738-1	", longtitude: "N/A", latitude: "N/A"});
+store.put({id: 99, city: "포천시", name: "왕산사", address: "경기도 포천시 호병골길 193 (신읍동)	", longtitude: "N/A", latitude:"N/A" });
 store.put({id: 100, city: "하남시", name: "선법사", address: "경기도 하남시 서하남로588번길 125	", longtitude:127.20859317, latitude:37.518040534});
 store.put({id: 101, city: "화성시", name: "신흥사", address: "경기도 화성시 서신면 신흥사길 17-34	", longtitude:126.7095398	, latitude:37.193382863});
 store.put({id: 102, city: "화성시", name: "봉림사", address: "경기도 화성시 남양읍 주석로80번길 139	", longtitude:126.84553591, latitude:37.205805545});
@@ -131,12 +131,13 @@ store.put({id: 104, city: "화성시", name: "만의사", address: "경기도 �
 //
 	
 	
-	var getdata1 = store.get(1);
+	var getdata = store.get(1);
+	
 	
 	getdata.onsuccess = function() {
         
        
-              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address);
+              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address );
         
       };
       

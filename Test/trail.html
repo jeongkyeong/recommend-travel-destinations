@@ -12,7 +12,7 @@ var openHanOk = indexedDB.open("HanOk", 2);
 openHanOk.onupgradeneeded = function() {
    var dbHanOk = open.result;
    var store = dbHanOk.createObjectStore("HanOkData", {keyPath: "name"});
-   //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+   var index = store.createIndex("NameIndex");
 };
 
 openHanOk.onsuccess = function() {
@@ -20,7 +20,7 @@ openHanOk.onsuccess = function() {
    var dbHanOk = openHanOk.result;
    var txHanOk = dbHanOk.transaction("trailData", "readwrite");
    var store = txHanOk.objectStore("trailData");
-   //var index = store.index("NameIndex");
+   var index = store.index("NameIndex");
 
    store.put({name: "오가물",city: "인천광역시", address: "인천광역시 중구 용유로380번길 21(남북동 868)" , tell: "032-746-9509"});
    store.put({name: "자미궁",city: "인천광역시", address: "인천광역시 서구 원당대로819번길 38 (원당동)" , tell: "032-567-1188"});
