@@ -6,7 +6,7 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-  var opentemple = indexedDB.open("KyoungGiDoTemple", 3);
+  var opentemple = indexedDB.open("Temple", 3);
 
   //Create the schema
  	opentemple.onupgradeneeded = function() {

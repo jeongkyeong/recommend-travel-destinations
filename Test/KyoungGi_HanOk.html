@@ -6,7 +6,7 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-var openHanOk = indexedDB.open("HanOk", 2);
+var openHanOk = indexedDB.open("HanOk", 3);
 
 //Create the schema
 openHanOk.onupgradeneeded = function() {

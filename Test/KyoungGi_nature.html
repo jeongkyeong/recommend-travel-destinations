@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+  var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+//Open (or create) the database
+  var opennatrue = indexedDB.open("Nature", 3);
+
+  //Create the schema
+ 	opennature.onupgradeneeded = function() {
+     var dbnature = openkgd.result;
+     var store = dbnature.createObjectStore("NatureData", {keyPath: "id"});
+     //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+  };
+
+  opennature.onsuccess = function() {
+     // Start a new transaction
+     var dbnature = opennature.result;
+     var txnature = dbnature.transaction("NatureData", "readwrite");
+     var store = txnature.objectStore("NatureData");
+     //var index = store.index("NameIndex");
+
+	store.put({id: "1", city: "가평군", name: "산장", address: "경기도 가평군 상면 덕현산장길 71", longtitude: 127.4106146, latitude: 37.75412776});
+	store.put({id: "2", city: "가평군", name: "대성", address: "경기도 가평군 상면 덕현산장길 44", longtitude: 127.3794886	,latitude: 37.68010977});
+	store.put({id: "3", city: "고양시", name: "고양", address: "경기도 고양시 일산서구 한류월드로 282", longtitude: 126.7553802	, latitude: 37.66340506});
+	store.put({id: "4", city: "남양주시", name: "수동", address: "경기도 남양주시 수동면 비룡로 1635", longtitude: 127.2749936, latitude: 37.75779834});
+	store.put({id: "5", city: "동두천시", name: "소요산", address: "경기도 동두천시 평화로2910번길 406-33", longtitude: 127.081949, latitude: 37.9444091});
+	store.put({id: "6", city: "동두천시", name: "동두천", address: "N/A", longtitude:127.0532303, latitude: 37.90775008});
+	store.put({id: "7", city: "수원시", name: "수원화성", address: "N/A", longtitude: 127.0183862, latitude:37.28788599});
+	store.put({id: "8", city: "양주시", name: "장흥", address: "경기도 양주시 장흥면 권율로 234-25", longtitude:126.9526942, latitude:37.73484809});
+	store.put({id: "9", city: "양평군", name: "용문산", address: "경기도 양평군 용문면 용문산로 640", longtitude:127.5835542	, latitude:37.5454885});
+	store.put({id: "10", city: "여주시", name: "신륵사", address: "경기도 여주시 신륵사길 13", longtitude:127.6557799, latitude:37.2994384});
+	store.put({id: "11", city: "연천군", name: "한탄강", address: "경기도 연천군 전곡읍 선사로 76", longtitude:127.0586757, latitude:38.00873008});
+	store.put({id: "12", city: "파주시", name: "임진각", address: "경기도 파주시 문산읍 임진각로 177", longtitude:126.7400182, latitude:37.88926659});
+	store.put({id: "13", city: "파주시", name: "공릉", address: "경기도 파주시 조리읍 장곡로 218", longtitude:126.8359822, latitude: 37.75029111});
+	store.put({id: "14", city: "평택시", name: "평택호", address: "N/A", longtitude:126.9215629, latitude: 36.967339});
+	store.put({id: "15", city: "평택시", name: "송탄", address: "N/A", longtitude: 127.0547111, latitude: 37.06776861});
+	store.put({id: "16", city: "평택시", name: "내리", address: "N/A", longtitude: 127.0300712, latitude: 36.97432652});
+	store.put({id: "17", city: "포천시", name: "백운계속", address: "N/A", longtitude: 127.3919558, latitude: 38.07546727});
+	store.put({id: "18", city: "포천시", name: "산정호수", address: "N/A", longtitude: 127.3303349, latitude: 38.04201999});
+
+	
+	var getdata1 = store.get(1);
+	
+	getdata.onsuccess = function() {
+        
+       
+              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address);
+        
+      };
+      
+     // Close the db when the transaction is done
+     txnature.oncomplete = function() {
+         dbnature.close();
+     };
+  };
+
+
+
+</script>
+
+</head>
+<body>
+</body>
+</html>

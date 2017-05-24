@@ -6,7 +6,7 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-var openPark = indexedDB.open("park", 2);
+var openPark = indexedDB.open("Park", 3);
 
 //Create the schema
 openPark.onupgradeneeded = function() {
