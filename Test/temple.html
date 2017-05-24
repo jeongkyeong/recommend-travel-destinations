@@ -12,7 +12,7 @@
  	opentemple.onupgradeneeded = function() {
      var dbtemple = opentemple.result;
      var store = dbtemple.createObjectStore("templeData", {keyPath: "id"});
-     var index = store.createIndex("id","city","name","address","longtitude","latitude");
+    
   };
 
   opentemple.onsuccess = function() {
