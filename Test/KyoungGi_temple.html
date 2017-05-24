@@ -6,24 +6,25 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-  var openKyounggiTemple = indexedDB.open("KyoungGi_Temple", 2);
+  var opentemple = indexedDB.open("KyoungGiDoTemple", 3);
 
   //Create the schema
- 	openKyounggiTemple.onupgradeneeded = function() {
-     var dbKyounggiTemple = openKyounggiTemple.result;
-     var store = dbKyounggiTemple.createObjectStore("KyounggiTempleData", {keyPath: "id"});
-    
+ 	opentemple.onupgradeneeded = function() {
+     var dbtemple = opentemple.result;
+     var store = dbtemple.createObjectStore("templeData", {keyPath: "id"});
+     //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
   };
 
-  openKyounggiTemple.onsuccess = function() {
+  opentemple.onsuccess = function() {
      // Start a new transaction
-     var dbKyounggiTemple = openKyounggiTemple.result;
-     var txKyounggiTemple = dbKyounggiTemple.transaction("KyounggiTempleData", "readwrite");
-     var store = txKyounggiTemple.objectStore("KyounggiTempleData");
+     var dbtemple = opentemple.result;
+     var txtemple = dbtemple.transaction("templeData", "readwrite");
+     var store = txtemple.objectStore("templeData");
      //var index = store.index("NameIndex");
-     
-	//경기도 전통사찰 현황
-	store.put({id: "1", city: "가평군", name: "현등사", address: "경기도 가평군 조종면 하판리", longtitude: "", latitude: ""});
+
+	
+//경기도 전통사찰 현황
+store.put({id: "1", city: "가평군", name: "현등사", address: "경기도 가평군 조종면 하판리", longtitude: "", latitude: ""});
 	store.put({id: "2", city: "고양시", name: "중흥사", address: "경기도 고양시 덕양구 대서문길 393	", longtitude:126.97654894, latitude:37.645966741 });
 	store.put({id: "3", city: "고양시", name: "국녕사", address: "경기도 고양시 덕양구 대서문길 268	", longtitude:126.96236218	 , latitude:37.646854682 });
 	store.put({id: "4", city: "고양시", name: "상운사", address: "경기도 고양시 덕양구 대서문길 197-22", longtitude:126.9690205, latitude:37.656380033});
@@ -128,21 +129,20 @@
 	store.put({id: "104", city: "화성시", name: "만의사", address: "경기도 화성시 동탄면 풀무골로 219	", longtitude:127.14993923	, latitude:37.209495017});
 
 //
-
 	
-	var getdata = store.get(1);
 	
+	var getdata = store.get(100);
 	
 	getdata.onsuccess = function() {
         
        
-              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address );
+              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address);
         
       };
       
      // Close the db when the transaction is done
-     txKyounggiTemple.oncomplete = function() {
-         dbKyounggiTemple.close();
+     txtemple.oncomplete = function() {
+         dbtemple.close();
      };
   };
 
