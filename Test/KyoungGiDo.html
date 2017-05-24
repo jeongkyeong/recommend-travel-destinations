@@ -8,10 +8,10 @@
 //Open (or create) the database
   var openkgd = indexedDB.open("KyoungGiDo", 3);
 
-  var openpark = indexedDB.open("Park",3);
-  var opentemple = indexedDB.open("Temple",3);
-  var opennatrue = indexedDB.open("Nature",3);
-  var openhanok = indexedDB.open("HanOk",3);
+  var openpark = indexedDB.open("Kyounggi_Park",3);
+  var opentemple = indexedDB.open("Kyounggi_Temple",3);
+  var opennatrue = indexedDB.open("Kyounggi_Nature",3);
+  
 
 
   //Create the schema
@@ -30,7 +30,7 @@
 
     
 	
-	var getdata1 = store.get(1);
+	var getdata = store.get(1);
 	
 	getdata.onsuccess = function() {
         

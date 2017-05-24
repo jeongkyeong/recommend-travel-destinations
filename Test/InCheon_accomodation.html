@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+ <script>
+  var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+//Open (or create) the database
+  var openIncheonAccomodation = indexedDB.open("InCheon_Accomodation", 3);
+
+  //Create the schema
+ 	openIncheonAccomodation.onupgradeneeded = function() {
+     var dbIncheonAccomodation = openIncheonAccomodation.result;
+     var store = dbIncheonAccomodation.createObjectStore("IncheonAccomodationData", {keyPath: "id"});
+     //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+  };
+
+  openIncheonAccomodation.onsuccess = function() {
+     // Start a new transaction
+     var dbIncheonAccomodation = openIncheonAccomodation.result;
+     var txIncheonAccomodation = dbIncheonAccomodation.transaction("IncheonAccomodationData", "readwrite");
+     var store = txIncheonAccomodation.objectStore("IncheonAccomodationData");
+     //var index = store.index("NameIndex");
+
+
+	
+	var getdata = store.get(1);
+	
+	getdata.onsuccess = function() {
+        
+       
+              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address);
+        
+      };
+      
+     // Close the db when the transaction is done
+     txIncheonAccomodation.oncomplete = function() {
+         dbIncheonAccomodation.close();
+     };
+  };
+</script>
+</head>
+<body>
+
+</body>
+</html>

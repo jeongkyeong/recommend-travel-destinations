@@ -6,20 +6,20 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-var openPark = indexedDB.open("Park", 3);
+var openKyounggiPark = indexedDB.open("KyoungGi_Park", 3);
 
 //Create the schema
-openPark.onupgradeneeded = function() {
+openKyounggiPark.onupgradeneeded = function() {
    var dbPark = openPark.result;
-   var store = dbPark.createObjectStore("parkData", {keyPath: "name"});
+   var store = dbPark.createObjectStore("KyounggiParkData", {keyPath: "name"});
    //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
 };
 
-openPark.onsuccess = function() {
+openKyounggiPark.onsuccess = function() {
    // Start a new transaction
-   var dbPark = openPark.result;
-   var txPark = dbPark.transaction("parkData", "readwrite");
-   var store = txPark.objectStore("parkData");
+   var dbKyounggiPark = openKyounggiPark.result;
+   var txKyounggiPark = dbKyounggiPark.transaction("KyounggiParkData", "readwrite");
+   var store = txPark.objectStore("KyounggiParkData");
   // var index = store.index("NameIndex");
 
    // Add some data
@@ -88,20 +88,20 @@ openPark.onsuccess = function() {
    store.put({id: "63", name: "하피랜드",city: "화성시" , num_ride: "안전성검사대상 3종(바디슬라이드,유수풀,아쿠아플레이)"});
 
    // Close the db when the transaction is done
-   txPark.oncomplete = function() {
-       dbPark.close();
+   txKyounggiPark.oncomplete = function() {
+       dbKyounggiPark.close();
    };
 };
 
 function read(){
-	   var transaction = db.transaction(["parkData"]);
-    var objectStore = transaction.objectStore("parkData");
-		var openPark = objectStore.get("하피랜드");
+	   var transaction = dbKyounggiPark.transaction(["KyounggiParkData"]);
+    var objectStore = transaction.objectStore("KyounggiParkData");
+		var openKyounggiPark = objectStore.get("하피랜드");
 	
-		openPark.onsuccess = function(event) {
+		openKyounggiPark.onsuccess = function(event) {
 	          
-	          if(openPark.result) {
-	                alert("Name: " + openPark.result.name + ", City: " + openPark.result.city + ", # of rides: " + openpark.result.num_ride);
+	          if(openKyounggiPark.result) {
+	                alert("Name: " + openKyounggiPark.result.name + ", City: " + openKyounggiPark.result.city + ", # of rides: " + openpark.result.num_ride);
 	          } else {
 	                alert("Can't find your database!"); 
 	          }
@@ -112,6 +112,6 @@ function read(){
 
 </head>
 <body>
-<button onclick="openPark.onsuccess()">park from IDB</button>
+<button onclick="openKyounggiPark.onsuccess()">park from IDB</button>
 </body>
 </html>

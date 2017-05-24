@@ -6,21 +6,21 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-  var opentemple = indexedDB.open("Temple", 3);
+  var openKyounggiTemple = indexedDB.open("KyoungGi_Temple", 3);
 
   //Create the schema
- 	opentemple.onupgradeneeded = function() {
-     var dbtemple = opentemple.result;
-     var store = dbtemple.createObjectStore("templeData", {keyPath: "id"});
+ 	openKyounggiTemple.onupgradeneeded = function() {
+     var dbKyounggiTemple = openKyounggiTemple.result;
+     var store = dbKyounggiTemple.createObjectStore("KyounggiTempleData", {keyPath: "id"});
     
   };
 
-  opentemple.onsuccess = function() {
+  openKyounggiTemple.onsuccess = function() {
      // Start a new transaction
-     var dbtemple = opentemple.result;
-     var txtemple = dbtemple.transaction("templeData", "readwrite");
-     var store = txtemple.objectStore("templeData");
-     var index = store.index("NameIndex");
+     var dbKyounggiTemple = openKyounggiTemple.result;
+     var txtemple = dbtemple.transaction("KyounggiTempleData", "readwrite");
+     var store = txtemple.objectStore("KyounggiTempleData");
+     //var index = store.index("NameIndex");
 
 	
 //경기도 전통사찰 현황
@@ -142,8 +142,8 @@ store.put({id: 104, city: "화성시", name: "만의사", address: "경기도 �
       };
       
      // Close the db when the transaction is done
-     txtemple.oncomplete = function() {
-         dbtemple.close();
+     txKyounggiTemple.oncomplete = function() {
+         dbKyounggiTemple.close();
      };
   };
 

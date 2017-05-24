@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+  var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+//Open (or create) the database
+  var openInCheon = indexedDB.open("InCheon", 3);
+
+  var openIncheonPark = indexedDB.open("InCheon_Park",3);
+  var openIncheonTemple = indexedDB.open("InCheon_Temple",3);
+  var openIncheonNatrue = indexedDB.open("InCheon_Nature",3);
+  
+
+
+  //Create the schema
+ openInCheon.onupgradeneeded = function() {
+     var dbInCheon = openInCheon.result;
+     var store = dbInCheon.createObjectStore("InCheonData", {keyPath: "id"});
+     //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+  };
+
+  openInCheon.onsuccess = function() {
+     // Start a new transaction
+     var dbInCheon = openInCheon.result;
+     var txInCheon = dbInCheon.transaction("InCheonData", "readwrite");
+     var store = txInCheon.objectStore("InCheonData");
+     //var index = store.index("NameIndex");
+
+    
+	
+	var getdata = store.get(1);
+	
+	getdata.onsuccess = function() {
+        
+       
+              alert("City: "+getdata.result.city+"\n"+"Place: "+getdata.result.name+"\n"+"Address: "+getdata.result.address);
+        
+      };
+      
+     // Close the db when the transaction is done
+     txInCheon.oncomplete = function() {
+         dbInCheon.close();
+     };
+  };
+
+
+
+</script>
+
+</head>
+<body>
+</body>
+</html>

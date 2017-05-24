@@ -6,20 +6,20 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-var openHanOk = indexedDB.open("HanOk", 3);
+var openIncheonHanOk = indexedDB.open("InCheon_HanOk", 3);
 
 //Create the schema
-openHanOk.onupgradeneeded = function() {
-   var dbHanOk = open.result;
-   var store = dbHanOk.createObjectStore("HanOkData", {keyPath: "name"});
+openIncheonHanOk.onupgradeneeded = function() {
+   var dbIncheonHanOk = openIncheonHanOk.result;
+   var store = dbIncheonHanOk.createObjectStore("IncheonHanOkData", {keyPath: "name"});
    //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
 };
 
-openHanOk.onsuccess = function() {
+openIncheonHanOk.onsuccess = function() {
    // Start a new transaction
-   var dbHanOk = openHanOk.result;
-   var txHanOk = dbHanOk.transaction("HanOkData", "readwrite");
-   var store = txHanOk.objectStore("HanOkData");
+   var dbIncheonHanOk = openIncheonHanOk.result;
+   var txIncheonHanOk = dbIncheonHanOk.transaction("IncheonHanOkData", "readwrite");
+   var store = txIncheonHanOk.objectStore("IncheonHanOkData");
    //var index = store.index("NameIndex");
 
    store.put({id: "1", name: "오가물",city: "인천광역시", address: "인천광역시 중구 용유로380번길 21(남북동 868)" , tell: "032-746-9509"});
@@ -34,8 +34,8 @@ openHanOk.onsuccess = function() {
 
 
    // Close the db when the transaction is done
-   txHanOk.oncomplete = function() {
-       dbHanOk.close();
+   txIncheonHanOk.oncomplete = function() {
+       dbIncheonHanOk.close();
    };
 };
       </script>
