@@ -6,9 +6,37 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</DigestValue>
 </Reference>
+<Reference URI="InCheon.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>eSL4nyjJg6zZ7wKRF9S2gcKzy/u6bD25wX/B192ifek=</DigestValue>
+</Reference>
+<Reference URI="InCheon_HanOk.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>yPEmSul/2Qs/p++lj54XEEt/KNVB/6XYICVPqbIN10k=</DigestValue>
+</Reference>
+<Reference URI="InCheon_accomodation.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>7a+LWAhLNIP7kXAv1KtjrLCv7lYUEu0dNVeMiZfKjks=</DigestValue>
+</Reference>
+<Reference URI="InCheon_park.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>iotCI0BT7O8FLkPCQ7jMKxkrz5K9O32xBE8svdXSHPs=</DigestValue>
+</Reference>
 <Reference URI="KyoungGiDo.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Q4ZfJUSddpHyO484MBR/E68kioQ/mE6FOoYT+GtUyT4=</DigestValue>
+<DigestValue>njQ0iJPC3p+MiE7PG/EuwCUsY2XjzH/skPW343rGHf0=</DigestValue>
+</Reference>
+<Reference URI="KyoungGi_nature.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>cuxxWicoYYYaMuQxQKPAh/TXDXkna7AJ7/Yoi6nqeN8=</DigestValue>
+</Reference>
+<Reference URI="KyoungGi_park.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>2uwPVdvXYaBR9gmtwz99XwV9AWX8+dBpZqKHHcJAIFE=</DigestValue>
+</Reference>
+<Reference URI="KyoungGi_temple.html">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>UtxdybPoTxuDGW+7VZqBaO6ASC7JwsMwSV20aLCUewI=</DigestValue>
 </Reference>
 <Reference URI="Script.sql">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +44,7 @@
 </Reference>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>Sxh1Vo3wty6qq463Q91tWTdcIlBwQ76Cm03sTNzF6ho=</DigestValue>
+<DigestValue>do0KroFc2Q3NCbP0YCajxGK71xU2n6li+twSg3DUTlk=</DigestValue>
 </Reference>
 <Reference URI="backButton.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -64,19 +92,15 @@
 </Reference>
 <Reference URI="js%2Fmain.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>d/Kz+0qxe/dAoTh0J/1R3FEHIKBeAd2ZEScXsxMJwxk=</DigestValue>
+<DigestValue>XduEXqh4+dCRkEtKO9iXY5ZPjZp2EB7QG1nBvwYcbT8=</DigestValue>
 </Reference>
 <Reference URI="jyjy.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>qhl0w1/YZhY5LZczqlEPh/vtzExoq8SXExksICephoQ=</DigestValue>
 </Reference>
-<Reference URI="memeberSave.php">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>2fn0QuNZIUWcGcjGM2kxaFjrzGVMpL+T5cX1vctNjLc=</DigestValue>
-</Reference>
 <Reference URI="p00_signIn.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>TMCLEkJWp92j9CLNVIP9XWlwIQmHsmps2T9Ka8vV2Fg=</DigestValue>
+<DigestValue>SZuWQfFMgriE/WXkbOVny4wu5Gm3u54j/sDNBxhM+eY=</DigestValue>
 </Reference>
 <Reference URI="p01_signInSucceed.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -118,25 +142,9 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>YaL7YNsVhAaXavvtPq/SRgUTzH23OpSA3g87029QJGo=</DigestValue>
 </Reference>
-<Reference URI="park.html">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>3LxF3gsC26V0OSNxuLbPAsiIaDgnZebh+4l1JlakjSw=</DigestValue>
-</Reference>
-<Reference URI="signup.php">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>0fD9hfNafQVMmtvbYab0Eo1cyh3sQvQOFrlUzzWw1XY=</DigestValue>
-</Reference>
-<Reference URI="temple.html">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>s/fLpEcbB2357zI2VkrLZZM+rWIiDiRAo9m596ecvGA=</DigestValue>
-</Reference>
 <Reference URI="test.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>8/5oEYuGPjPg6ZYP2lONH8W3qKLSZtuDMxEjcf1SJVc=</DigestValue>
-</Reference>
-<Reference URI="trail.html">
-<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>1cPzTxg6zUDSLYsmnUgY6m4pc2Dx13I6/tFRUxLeFs8=</DigestValue>
 </Reference>
 <Reference URI="#prop">
 <Transforms>
@@ -147,9 +155,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-HspfsS7eXfEXt57mNO8eW5sxcrjLKAmLo63gl+2m+HHZ0UR+wDNBQTKzJjwoG+1+Hno4Re6URT5a
-6rVEJSFA9ROAc8PdPKVA5oM2WtHxd4czftWX3CmUUtmSZBcdQ8aXCsB33O4m6TZ8OtWsOSseu8ll
-gtSb6PEP6sbVc6cADKc=
+Rhw0I1ebSRrR0NPXfUIN0RhOEhQeIdPAwloAF3hqw33KMDulrnbetJZNVwi95fnCT3SR9aK9Syfa
+I8wmf1fuQQrQ+wOUGHBEUbXqcmAFlcdR5BdoI6o7hohPF1wTGrRYKjxxrw/8TZQs8Cb5UBGr/Taj
+oC3Tu+hHdJtTB68e+a8=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

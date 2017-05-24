@@ -12,7 +12,7 @@
 
   //Create the schema
  	openIncheonPark.onupgradeneeded = function() {
-     var dbIncheonPark = openpark.result;
+     var dbIncheonPark = openIncheonpark.result;
      var store = dbIncheonPark.createObjectStore("IncheonParkData", {keyPath: "id"});
      //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
   };

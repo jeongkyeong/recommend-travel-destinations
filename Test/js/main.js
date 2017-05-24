@@ -14,12 +14,12 @@ window.onload = function() {
 
  // select DB() is function with openDatabase
  
-        selectDB();
+    //    selectDB();
  
     // Sample code
     
     var mainPage = document.querySelector('#signInSucceed');
-
+/*
     mainPage.addEventListener("click", function() {
     	 {
     		   
@@ -42,5 +42,5 @@ window.onload = function() {
         window.location.replace("p3_list.html");
         
     }); 
-
+*/
 }
