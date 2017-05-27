@@ -6,22 +6,25 @@
   var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
 //Open (or create) the database
-  var openKyounggiNatrue = indexedDB.open("KyoungGi_Nature", 3);
+  var openKyounggiNature = indexedDB.open("KyoungGi_Nature", 3);
 
   //Create the schema
  	openKyounggiNature.onupgradeneeded = function() {
      var dbKyounggiNature = openKyounggiNature.result;
      var store = dbKyounggiNature.createObjectStore("KyounggiNatureData", {keyPath: "id"});
-     //var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
+    console.log("create");
   };
 
   openKyounggiNature.onsuccess = function() {
-     // Start a new transaction
-     var dbKyounggiNature = openKyounggiNature.result;
-     var txKyounggiNature = dbKyounggiNature.transaction("KyounggiNatureData", "readwrite");
-     var store = txnKyounggiNature.objectStore("KyounggiNatureData");
-     //var index = store.index("NameIndex");
+	   // Start a new transaction
+	   var dbKyounggiNature = openKyounggiNature.result;
+	   var txKyounggiNature = dbKyounggiNature.transaction("KyounggiNatureData", "readwrite");
+	   var store = txKyounggiNature.objectStore("KyounggiNatureData");
+	  // var index = store.index("NameIndex");
 
+	   // Add some data
+	   
+	   	
 	store.put({id: 1, city: "가평군", name: "산장", address: "경기도 가평군 상면 덕현산장길 71", longtitude: 127.4106146, latitude: 37.75412776});
 	store.put({id: 2, city: "가평군", name: "대성", address: "경기도 가평군 상면 덕현산장길 44", longtitude: 127.3794886	,latitude: 37.68010977});
 	store.put({id: 3, city: "고양시", name: "고양", address: "경기도 고양시 일산서구 한류월드로 282", longtitude: 126.7553802	, latitude: 37.66340506});
