@@ -21,6 +21,12 @@
 .backButton span img {width:35px;height:30px;padding:0px 0;border:none;}             
     
     </style>
+     <?php
+    session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+    ?>
 </head>
 <body>
 <div class="map_wrap">

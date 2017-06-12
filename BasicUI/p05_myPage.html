@@ -1,10 +1,89 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+   
+
+    <title>Mypage</title>
+    
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/main.js"></script>
+    
+    <style>
+  #jb-container {
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-header {
+    padding: 2px;
+    margin-bottom: 5px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-content {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-footer {
+        clear: both;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+  @media ( min-width: 481px ) {
+    #jb-container {
+      width: 900px;
+    }
+    #jb-content {
+      width: 580px;
+      float: left;
+    }
+    #jb-footer {
+          float: none;
+          width: auto;
+    }
+
+  }
+</style>
+
+ <?php
+    session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+    ?>
+   
 </head>
 <body>
 
+    <div id="jb-container">
+	<center>
+      <div id="jb-header">
+        <h2>MyPage</h2>
+      </div>
+ 
+      <div id="jb-content">
+	
+	<div id="list" class="page">
+        <div class="contents">
+		<br/><br/><br/>
+       		<button1 type="button" name="p5_b1" id="p5_b1" onclick="location.href='p11_editProfile.html';">Edit Profile</button1><br/><br/>
+       		<button1 type="button" name="p5_b2" id="p5_b2" onclick="location.href='p12_considerations.html';">Considerations</button1><br/><br/>
+		<br/><br/><br/>       	
+
+	</div></div>
+<button type="button" name="php_b1" id="php_b1" onclick ="location.href='p03_list.html';">Back</button>
+	</center>
+      
+	</div>
+       <div id="jb-footer">
+        <p>Copyright</p>
+	</div>
+   </div>
+
 </body>
+
 </html>

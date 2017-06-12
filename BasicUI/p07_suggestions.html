@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,18 +7,61 @@
     <meta name="description" content="Tizen Mobile Web Basic Template" />
 
     <title>Choose Filtering Options</title>
+    
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/main.js"></script>
+    
+    <style>
+  #jb-container {
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-header {
+    padding: 2px;
+    margin-bottom: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-content {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #bcbcbc;
+  }
+
+  @media ( min-width: 481px ) {
+    #jb-container {
+      width: 940px;
+    }
+    #jb-content {
+      width: 580px;
+      float: left;
+    }
+
+  }
+</style>
    
 </head>
+ <?php
+    session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+    ?>
 <body>
- <span id="content-text"><font size = '2'>Options
- </span>
- <br />
-<label>
+
+    <div id="jb-container">
+	<center>
+      <div id="jb-header">
+        <h3>Filtering Options for Suggestion</h3>
+      </div>
+	</center>
+    <label>
+
+
 <script type="text/javascript">
-  <!--
+
+/*
    function Check(form)
 
    {
@@ -26,59 +69,63 @@
         var msg = "";
 
         if (form.cb1.checked)
-             msg += form.cb1.value + "\n";
+             msg += form.cb1.value;
         if (form.cb2.checked)
-             msg += form.cb2.value + "\n";
+             msg += form.cb2.value;
         if (form.cb3.checked)
-            msg += form.cb3.value + "\n";
+            msg += form.cb3.value;
         if (form.cb4.checked)
-            msg += form.cb4.value + "\n";
+            msg += form.cb3.value;form.cb4.value;
         if (form.cb5.checked)
-            msg += form.cb5.value + "\n";
+            msg += form.cb3.value;form.cb5.value;
         if (form.cb6.checked)
-            msg += form.cb6.value + "\n";
-        if (form.cb7.checked)
-            msg += form.cb7.value + "\n";
-        if (form.cb8.checked)
-            msg += form.cb8.value + "\n";
-        if (form.cb9.checked)
-            msg += form.cb9.value + "\n";
-        if (form.cb10.checked)
-            msg += form.cb10.value + "\n";
+            msg += form.cb3.value;form.cb6.value;
 
-        alert(msg);
+
    }
-  //-->
+*/
+
  
 </script>
-
+<div id = "jb-content">
          <form name="form1" action="p09_afterFiltering.html" method = "GET">
-          <span id="content-text"><font size = '2'>Gender:
- </span>
- <br />
-               <input type="checkbox" name="cb1" value="Male"> Male
-               <input type="checkbox" name="cb2" value="Female"> Female <br />
-               
-               <span id="content-text"><font size = '2'>Composition:
- </span>
- <br />
-<input type="checkbox" name="cb3" value="Friends">Friends
-<input type="checkbox" name="cb4" value="Couple">Couple
-<input type="checkbox" name="cb5" value="Family">Family
-<br />
-<span id="content-text"><font size = '2'>Types:
- </span>
- <br />
-<input type="checkbox" name="cb6" value="In Seoul">InSeoul
-<input type="checkbox" name="cb7" value="Activity">Activity
-<input type="checkbox" name="cb8" value="Healing">Healing
-<input type="checkbox" name="cb9" value="Outdoor">Outdoor
-<br />
-<input type="checkbox" name="cb10" value="Indoor">Indoor
-<br />
-<br />
+          <span id="content-text"><font size = '2'><b>Gender:</b></span>
 
+<br />
+               <input type="checkbox" name="gender" value="M"> Male
+               <input type="checkbox" name="gender" value="F"> Female 
+<br /><br />
+                
+               <span id="content-text"><font size = '2'><b>Who do you travel with often?: </b></span>
 
+<br />
+<input type="checkbox" name="companion" value="friend">Friends
+<input type="checkbox" name="companion" value="couple">Couple
+<input type="checkbox" name="companion" value="family">Family
+<input type="checkbox" name="companion" value="alone">Alone
+
+<br /><br />
+<span id="content-text"><font size = '2'><b>Choose your most interested traveling theme: </b></span>
+
+<br />
+<input type="checkbox" name="type" value="nature">Nature
+<input type="checkbox" name="type" value="art">Performing Art
+<input type="checkbox" name="type" value="traditional">Traditional
+<input type="checkbox" name="type" value="food">Food Holic
+<input type="checkbox" name="type" value="shopping">Shopping
+<input type="checkbox" name="type" value="out">Outdoor Activity
+<input type="checkbox" name="type" value="in">Indoor Activity
+<input type="checkbox" name="type" value="comfortable">Comfortable(Not active)
+<br /><br />
+
+<span id="content-text"><font size = '2'><b>Purpose of your travel:</b></span>
+<br />
+<!--<input type="checkbox" name="route" value="all">See all around the country-->
+<input type="checkbox" name="route" value="specific">Specific area to visit
+<!--<input type="checkbox" name="route" value="landmark">Landmarks Only -->
+<input type="checkbox" name="route" value="dontcare">Don't care
+<br />
+<br />
 <input type="button" value="Confirm" onclick="Check(this.form);">
 
  </form>
@@ -86,9 +133,13 @@
   <button type="submit" name="p7_b1" id="p7_b1" formaction ="p09_afterFiltering.html">Next</button>
   <button type="submit" name="p7_b1" id="p7_b1" formaction ="p03_list.html">Back</button>
       
-
-
 </label>
+   
+    </div>
+     <div id="jb-footer">
+        <p>Copyright</p>
+      </div>
+</div>
 
 </body>
 

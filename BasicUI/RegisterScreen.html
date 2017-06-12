@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+
+<style>
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width:320px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+	
+}
+
+input,
+::-webkit-input-placeholder{
+    font-size: 15px;
+    line-height: 2;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #556d9c;
+    color: white;
+    padding: 20px 45px;
+    margin: 10px 0px;
+    border: none;
+    cursor: pointer;
+    width: 160px;
+    
+
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 20px 20px;
+    background-color: #b2ae40;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,.signupbtn {
+    float: left;
+    
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 15px;
+	width:320px;
+
+}
+
+/* Clear floats */
+.clearfix::after {
+   content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 160px;
+    }
+}
+</style>
+<body>
+
+<h2><font size = 5>Register</font></h2>
+
+<form action="inputuser.php" style="border:1px solid #ccc" method = "post">
+  <div class="container">
+    <label><b><font size = 3>Username</font></b></label><br/>
+    
+    <font size = 3><input type="text" placeholder="Enter Username" name="username" required>
+	<br/>
+    <label><b><font size = 3>Password</font></b></label><br/>
+    <font size = 3><input type="password" placeholder="Enter Password" name="password" required>
+<br/>
+    <label><b><font size = 3>Name</font></b></label><br/>
+    <input type="text" placeholder="Enter Name" name="name" required>
+<br/>
+    <label><b><font size = 3>Gender</font></b></label><br/>
+    <input type="text" placeholder="Enter F or M" name="gender" required>
+<br/>
+    <label><b><font size = 3>Email</font></b></label><br/>
+    <input type="text" placeholder="Enter Email" name="email" required>
+   
+
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn"><font size = 3>회원가입</font></button>
+       <button type="button" onclick="location.href='index.html'" class="cancelbtn"><font size = 3>취소</font></button>
+    </div>
+  </div>
+</form>
+
+
+</body>
+</html>

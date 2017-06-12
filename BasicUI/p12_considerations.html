@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Tizen Mobile Web Basic Template" />
+
+    <title>Register</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+ <style>
+      #jb-container {
+        width: 940px;
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 0px;
+        margin-bottom: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 580px;
+        padding: 10px;
+        margin-bottom: 10px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+    
+      #jb-footer {
+        clear: both;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      @media ( max-width: 480px ) {
+        #jb-container {
+          width: auto;
+        }
+        #jb-content {
+          float: none;
+          width: auto;
+        }
+        #jb-sidebar {
+          float: none;
+          width: auto;
+        }
+      }
+    </style>
+    <script src="js/main.js"></script>
+
+</head>
+
+<body>
+	<div id="jb-container">
+	<center>
+      	<div id="jb-header">
+        	<h3>Considerations</h3>
+      	</div>
+	</center>
+	<div id = "jb-content">
+        	<form name="form1" action="saveConsiderations.html" method = "GET">
+          	<span id="content-text"><font size = '2'><b>First</b></span>
+
+		<br />
+               	<input type="checkbox" name="first" value="popularity">Popularity 
+               	<input type="checkbox" name="first" value="nature">Nature 
+		<input type="checkbox" name="first" value="distance">Distance <br/>
+		<input type="checkbox" name="first" value="cost">Cost 
+		<input type="checkbox" name="first" value="accomodation">Accomodation 
+		<input type="checkbox" name="first" value="shopping">Shopping <br/>
+		<input type="checkbox" name="first" value="safty">Safty 
+		<input type="checkbox" name="first" value="transportation">Transportaion 
+		<input type="checkbox" name="first" value="sport">Sport 
+		<input type="checkbox" name="first" value="food">Food 
+		<br /><br />
+                
+               	<span id="content-text"><font size = '2'><b>Second</b></span>
+
+		<br />
+               	<input type="checkbox" name="second" value="popularity">Popularity 
+               	<input type="checkbox" name="second" value="nature">Nature 
+		<input type="checkbox" name="second" value="distance">Distance <br/>
+		<input type="checkbox" name="second" value="cost">Cost 
+		<input type="checkbox" name="second" value="accomodation">Accomodation 
+		<input type="checkbox" name="second" value="shopping">Shopping <br/>
+		<input type="checkbox" name="second" value="safty">Safty 
+		<input type="checkbox" name="second" value="transportation">Transportaion 
+		<input type="checkbox" name="second" value="sport">Sport 
+		<input type="checkbox" name="second" value="food">Food 
+		<br /><br />
+		<span id="content-text"><font size = '2'><b>Third</b></span>
+
+		<br />
+               	<input type="checkbox" name="third" value="popularity">Popularity 
+               	<input type="checkbox" name="third" value="nature">Nature 
+		<input type="checkbox" name="third" value="distance">Distance <br/>
+		<input type="checkbox" name="third" value="cost">Cost 
+		<input type="checkbox" name="third" value="accomodation">Accomodation 
+		<input type="checkbox" name="third" value="shopping">Shopping <br/>
+		<input type="checkbox" name="third" value="safty">Safty 
+		<input type="checkbox" name="third" value="transportation">Transportaion 
+		<input type="checkbox" name="third" value="sport">Sport 
+		<input type="checkbox" name="third" value="food">Food 
+		<br /><br /><br />
+
+		<input type="submit" value="Confirm" onclick="Check(this.form);">
+
+ 		</form>
+		<button type="button" name="php_b1" id="php_b1" onclick ="location.href='p05_myPage.html';">Back</button>
+
+	</label>
+   
+    </div>
+     <div id="jb-footer">
+        <p>Copyright</p>
+      </div>
+ </div>
+</body>
+
+</html>
+

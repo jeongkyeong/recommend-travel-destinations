@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8" />
+     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="Tizen Mobile Web Basic Template" />
 
@@ -9,11 +9,39 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/main.js"></script>
-   
+   <style>
+  #jb-container {
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-header {
+    padding: 2px;
+    margin-bottom: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-content {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #bcbcbc;
+  }
+
+  @media ( min-width: 481px ) {
+    #jb-container {
+      width: 940px;
+    }
+    #jb-content {
+      width: 580px;
+      float: left;
+    }
+
+  }
+</style>
 </head>
 
 <script language="JavaScript">
-  function processForm()
+/*
+function processForm()
   {
     var parameters = location.search.substring(1).split("&");
     var temp = parameters[0].split("=");
@@ -21,27 +49,409 @@
      // alert(l); //Dialog with the text you put on the textbox
   }
   processForm();
+*/
 </script>
+ <?php
+    session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+    ?>
 <body>
 
-<script>
+ <div id="jb-container">
+	<center>
+      <div id="jb-header">
+        <h3>Suggestion Result</h3>
+      </div>
+	</center>
+	<div id="jb-content">
 
-var cafe = new Array('Kakao-Friends Store','Starbucks','Coffee Bean');
-var i = Math.floor(cafe.length * Math.random()); 
-//for(var j = 0; j < cafe.length; j++){
-	document.write(l);
-	document.write('<br/>');
-	document.write(cafe[i]);
-	document.write('<br/>');
-//}
+<?php
 
-var restaurant = new Array('ShackShack','CGV','Gang-Nam Station');
-	document.write(restaurant[i]);
-	document.write('<br/>');
+header("Content-Type: text/html; charset=UTF-8");
 
-</script>
-<a href="p07_suggestions.html">
-<button2>Back</button2></a>
-<button2 type="submit" name="p9_b1" id="p9_b1" onclick="location.href='p10_suggestionResult.html';">Confirm</button2><br/><br/>
+
+$userID = "kangjk"; //////////////////////////////NEED USER ID!!!!!!!!
+
+
+$gender = $_GET["gender"];
+$companion = $_GET["companion"];
+$type = $_GET["type"];
+$route = $_GET["route"];
+
+
+$host = "localhost";
+$username = "travelgo13temp";
+$password = "tizen1818";
+$DB_name = "travelgo13temp";
+
+
+$interestFirst;
+$interestSecond;
+$interestThird;
+
+$cFirst;
+$cSecond;
+$cThird;
+
+$conn = mysqli_connect($host, $username, $password, $DB_name);
+
+if(mysqli_connect_errno($conn)){
+	echo "Fail!";
+}
+else{
+
+	mysqli_query($conn,"set names utf8");
+		
+	//$userArr = array();
+	//$userData;
+	
+	///1. 사용자의 gender, companion과 같은 유형의 interest 통계치 받아옴 
+	global $conn;
+	$interestResult = mysqli_query($conn, "select * from interest");
+	while($row1 = mysqli_fetch_array($interestResult)){
+		
+		if(stripos($row1[1],$gender)!==false){
+			if(stripos($row1[2],$companion)!==false){
+				global $interestFirst;
+				global $interestSecond;
+				global $interestThird;
+				$interestFirst = $row1[3];
+				$interestSecond = $row1[4];
+				$interestThird = $row1[5];
+			}
+		}
+	}
+	echo '<br/>';
+	echo "<b>All Users' Interest Result: </b>".$interestFirst.", ".$interestSecond.", ".$interestThird.'<br/>';
+
+	//2. 사용자의 considerations 받아옴 //////////////////////////NEED USER ID!!!!!!!!!!!!
+	$cResult = mysqli_query($conn, "select * from considerations");
+	while($cRow = mysqli_fetch_array($cResult)){
+		if(stripos($cRow[0],$userID)!==false){
+			global $cFirst;
+			global $cSecond;
+			global $cThird;
+			$cFirst = $cRow[1];
+			$cSecond = $cRow[2];
+			$cThird = $cRow[3];
+		}
+	}
+	echo "<b>Your Considerations: </b>".$cFirst.", ".$cSecond.", ".$cThird.'<br/>';
+
+	
+	echo "<b>Filter Options: </b>".$gender.", ".$companion.", ".$type.", ".$route.'<br/>';
+	echo '<br/>';
+	//1. interest
+	updateTheme();
+	
+	//2.considerations
+	updateConsiderations();
+	
+	//3.filter type
+	updateFilterType();
+	
+	$city = array('서울/경기권'=>0,'강원권'=>0,'충청권'=>0,'전라권'=>0,'경상권'=>0, '제주권'=>0);
+	//결과를 출력하면서 route를 이용
+	$result = mysqli_query($conn, "select * from placefeature ORDER BY interest DESC LIMIT 20");
+	while($row5 = mysqli_fetch_array($result)){
+		$tempid = $row5[0];
+		
+		
+		///상위의 20개중에서 그 id 에 해당하는 정보를 top100에서 불러옴
+		$data = mysqli_query($conn, "select * from top100 WHERE id = '$tempid'");
+		while($datarow = mysqli_fetch_array($data)){
+		
+			switch($datarow[2]){
+			case "서울/경기권": 
+				global $city;
+				$city['서울/경기권'] = $city['서울/경기권'] + 1;
+				break;
+			case "강원권": 
+				global $city;
+				$city['강원권'] = $city['강원권'] + 1;
+				break;
+			case "충청권": 
+				global $city;
+				$city['충청권'] = $city['충청권'] + 1;
+				break;
+			case "전라권": 
+				global $city;
+				$city['전라권'] = $city['전라권'] + 1;
+				break;
+			case "경상권": 
+				global $city;
+				$city['경상권'] = $city['경상권'] + 1;
+				break;
+			case "제주권": 
+				global $city;
+				$city['제주권'] = $city['제주권'] + 1;
+				break;
+			}
+			
+		}
+			
+		
+	}$max_int_v = max($city); 
+	$cityResult = array_search($max_int_v, $city);
+	//echo print_r($city);
+	
+	if(strpos($route,"dontcare")!==false){
+		$result = mysqli_query($conn, "select * from placefeature ORDER BY interest DESC LIMIT 4");
+		while($row5 = mysqli_fetch_array($result)){
+		$tempid = $row5[0];
+		
+		
+			///상위의 4개중에서 그 id 에 해당하는 정보를 top100에서 불러옴
+			$data = mysqli_query($conn, "select * from top100 WHERE id = '$tempid'");
+			while($datarow = mysqli_fetch_array($data)){
+				echo $datarow[1]." - ".$datarow[7].'<br/>'.'<br/>';
+			}
+		}
+	}
+	else if(strpos($route,"specific")!==false){
+		$count = 0;
+		$result = mysqli_query($conn, "select * from placefeature ORDER BY interest DESC LIMIT 20");
+		while($row5 = mysqli_fetch_array($result)){
+		$tempid = $row5[0];
+		
+		
+			///상위의 20개중에서 그 id 에 해당하는 정보를 top100에서 불러옴
+			$data = mysqli_query($conn, "select * from top100 WHERE (id = '$tempid') AND (시도 = '$cityResult')");
+			while($datarow = mysqli_fetch_array($data)){
+				echo $datarow[1]." - ".$datarow[7].'<br/>'.'<br/>';
+				global $count;
+				$count = $count +1;
+			}
+		global $count;
+		if($count>3) break;
+		}
+
+	}
+	
+}
+
+function updateTheme(){
+	global $interestFirst;
+	global $interestSecond;
+	global $interestThird;
+	global $conn;
+
+	//1. interest에 있는 theme 점수 
+	$result = mysqli_query($conn, "select * from placefeature");
+	while($row2 = mysqli_fetch_array($result)){
+	
+	if(stripos($row2[2],$interestFirst)!==false){
+		$interest = $row2[1]+20;
+		$id = $row2[0];
+		$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update theme: ".$interest.'<br/>';
+	}
+	if(stripos($row2[2],$interestSecond)!==false){
+		$interest = $row2[1]+12;	
+		$id = $row2[0];
+		$second = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update theme: ".$interest.'<br/>';
+	}
+	if(stripos($row2[2],$interestThird)!==false){
+		$interest = $row2[1]+8;
+		$id = $row2[0];
+		$third = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update theme: ".$interest.'<br/>';
+	}
+	else{
+		$interest = $row2[1]+0;
+	}
+	
+	//$userData = array('ID' => $id, 'theme' => $row2[2],'interest'=> $interest);
+	//array_push($userArr,$userData);
+	}
+	//print_r($userArr);
+
+}
+function updateConsiderations(){
+	
+	//2. 사용자의 considerations반영 ///**************가정: 사용자의 1,2,3순위가 겹치지 않는다.************
+
+	global $conn;
+	global $cFirst;
+	global $cSecond;
+	global $cThird;
+
+	$cresult = mysqli_query($conn, "select * from placefeature");
+	while($row3 = mysqli_fetch_array($cresult)){
+	$temp = 0;
+	$tempid = $row3[0];
+
+	//first의 상중하
+	if(strpos($row3[$cFirst],"상")!==false){
+		$interest = $row3[1]+30;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update cfirst: ".$interest.'<br/>';
+	}
+	if(strpos($row3[$cFirst],"중")!==false){
+		$interest = $row3[1]+15;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update cfirst: ".$interest.'<br/>';
+	}
+	if(strpos($row3[$cFirst],"하")!==false){
+		$interest = $row3[1]+0;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update cfirst: ".$interest.'<br/>';
+	}
+
+	//second의 상중하
+	if(strpos($row3[$cSecond],"상")!==false){
+		$interest = $row3[1]+25;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$second = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update csecond: ".$interest.'<br/>';
+	}
+	if(strpos($row3[$cSecond],"중")!==false){
+		$interest = $row3[1]+15;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$second = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update csecond: ".$interest.'<br/>';
+	}
+	if(strpos($row3[$cSecond],"하")!==false){
+		$interest = $row3[1]+0;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$second = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update csecond: ".$interest.'<br/>';
+	}
+
+
+	//third의 상중하
+	if(strpos($row3[$cThird],"상")!==false){
+		$interest = $row3[1]+20;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$third = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update cthird: ".$interest.'<br/>';
+	}
+	if(strpos($row3[$cThird],"중")!==false){
+		$interest = $row3[1]+10;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$third = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update cthird: ".$interest.'<br/>';
+	}
+	if(strpos($row3[$cThird],"하")!==false){
+		$interest = $row3[1]+0;
+		$id = $row3[0];
+		global $temp;
+		$temp = $temp + $interest;
+		
+		//echo $id."update cthird: ".$interest.'<br/>';
+	}
+
+	else{
+		$interest = $row3[1]+0;
+		$temp = $temp + $interest;
+	}
+	
+	$result = mysqli_query($conn, "UPDATE placefeature SET interest = '$temp' WHERE mid = '$tempid'");
+	//echo $tempid."update temp: ".$temp.'<br/>';
+	}
+
+}
+
+function updateFilterType(){ 
+	//3-1.사용자의 filter options for suggestion ((gender, companion) ==>이건 1번에서햇고 , type) 이용한 가중치
+	
+
+	global $conn;
+	global $type;
+
+	$fresult = mysqli_query($conn, "select * from placefeature");
+	while($row4 = mysqli_fetch_array($fresult)){
+	$temp = 0;
+	$tempid;
+	if(stripos($type,"in")!==false){
+		if(stripos($row4[3],"in")!==false){
+			$interest = $row4[1]+30;
+			$id = $row4[0];
+			global $temp;
+			$temp = $temp + $interest;
+		}
+	
+	}else if(stripos($type,"out")!==false){
+		if(stripos($row4[3],"out")!==false){
+			$interest = $row4[1]+30;
+			$id = $row4[0];
+			global $temp;
+			$temp = $temp + $interest;
+		}
+	}
+	//type의 상중하
+	if(stripos($row4[type],"상")!==false){
+		$interest = $row4[1]+60;
+		$id = $row4[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update type: ".$interest.'<br/>';
+	}
+	if(stripos($row4[type],"중")!==false){
+		$interest = $row4[1]+40;
+		$id = $row4[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update type: ".$interest.'<br/>';
+	}
+	if(stripos($row4[type],"하")!==false){
+		$interest = $row4[1]+10;
+		$id = $row4[0];
+		global $temp;
+		$temp = $temp + $interest;
+		//$first = mysqli_query($conn, "UPDATE placefeature SET interest = '$interest' WHERE mid = '$id'");
+		//echo $id."update type: ".$interest.'<br/>';
+	}	
+	else{
+		$interest = $row4[1]+0;
+		global $temp;
+		$temp = $temp + $interest;
+	}
+	$result = mysqli_query($conn, "UPDATE placefeature SET interest = '$temp' WHERE mid = '$tempid'");
+	//echo $tempid."update temp: ".$temp.'<br/>';
+	}
+
+
+}
+
+
+
+////////모든게 다끝나면 디비닫기전에 interest 0으로 초기화
+$result = mysqli_query($conn, "select * from placefeature");
+while($row = mysqli_fetch_array($result)){
+	mysqli_query($conn, "UPDATE placefeature SET interest = '0'");
+}
+mysqli_close($conn)
+?>
+<br/>
+<a href="p07_suggestions.html"><button>Back</button></a>
+<!-----<button type="submit" name="p9_b1" id="p9_b1" onclick="location.href='p10_suggestionResult.html';">Confirm</button><br/><br/>
+----------------->
+</div>
+</div>
 </body>
 </html>

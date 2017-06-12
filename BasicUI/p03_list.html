@@ -1,29 +1,88 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="Tizen Mobile Web Basic Template" />
-
-    <title>List</title>
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+   
+    <style>
+      #jb-container {
+        width: 900px;
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 580px;
+        padding: 10px;
+        margin-bottom: 10px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-sidebar {
+        width: 260px;
+        padding: 10px;
+        margin-bottom: 10px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      @media ( max-width: 480px ) {
+        #jb-container {
+          width: auto;
+        }
+        #jb-content {
+          float: none;
+          width: auto;
+        }
+       
+      }
+    </style>
     <script src="js/main.js"></script>
+    <?php
+    session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+    ?>
 </head>
-
-<body>
-    <div id="list" class="page">
+  </head>
+  <body>
+    <div id="jb-container">
+	<center>
+      <div id="jb-header">
+        <h1>TravelGO</h1>
+      </div>
+      <div id="jb-content">
+        <h1>Menu</h1> <br/>
+          <div id="list" class="page">
         <div class="contents">
        		<button1 type="button" name="p3_b1" id="p3_b1" onclick="location.href='p05_myPage.html';">My Page</button1><br/><br/>
-       		<button1 type="button" name="p3_b2" id="p3_b2" onclick="location.href='p06_scheduleTraveling.html';">Schedule Traveling</button1><br/><br/>
+       		<button1 type="button" name="p3_b2" id="p3_b2" onclick="location.href='p06_scheduleTraveling.html';">TODO list</button1><br/><br/>
        		<button1 type="button" name="p3_b3" id="p3_b3" onclick="location.href='p07_suggestions.html';">Suggestions</button1><br/><br/>
        		<button1 type="button" name="p3_b4" id="p3_b4" onclick="location.href='p04_nearMe.html';">Near Me</button1><br/><br/>
-       		<button1 type="button" name="p3_b5" id="p3_b5" onclick="location.href='p08_mySchedule.html';">My Schedule</button1><br/><br/>
-            <button1 type="button" name="p3_b6" id="p3_b6" onclick="location.href='p00_signIn.html';">Log Out</button1>
+       		
+            	<button1 type="button" name="p3_b6" id="p3_b6" onclick="location.href='index.html';">Log Out</button1>
+		<br/><br/><br/>
         </div>
     </div>
-</body>
+      </div>
+	</center>
 
+      <div id="jb-footer">
+        <p>Copyright@ Temp team(Kang, JeongKyeong | Eum, JungYun | Kim, Daeun)</p>
+      </div>
+    </div>
+  </body>
 </html>
-

@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Tizen Mobile Web Basic Template" />
+
+    <title>MySchedule</title>
+    
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/main.js"></script>
+    
+    <style>
+  #jb-container {
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-header {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-content {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #bcbcbc;
+  }
+
+  @media ( min-width: 481px ) {
+    #jb-container {
+      width: 940px;
+    }
+    #jb-content {
+      width: 580px;
+      float: left;
+    }
+
+  }
+</style>
+    <?php
+    session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+    ?>
 </head>
 <body>
 
+    <div id="jb-container">
+      <div id="jb-header">
+        <h1>My Schedule</h1>
+      </div>
+ 
+    
+      </div>
+       <div id="jb-footer">
+        <p>Copyright</p>
+      </div>
+ 
+
 </body>
+
 </html>

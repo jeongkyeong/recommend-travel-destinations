@@ -1,31 +1,227 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="Tizen Mobile Web Basic Template" />
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      #jb-container {
+        width: 900px;
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 0px;
+        margin-bottom: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 580px;
+        padding: 10px;
+        margin-bottom: 10px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
 
-    <title>Schedule Traveling</title>
+      #jb-footer {
+        clear: both;
+        padding: 10px;
+        border: 1px solid #bcbcbc;
+      }
+      @media ( max-width: 480px ) {
+        #jb-container {
+          width: auto;
+        }
+        #jb-content {
+          float: none;
+          width: auto;
+        }
+      }
+    </style>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/main.js"></script>
 </head>
 
 <body>
-    <div id="scheduleTraveling" class="page">
-        <div class="contents">
-            <form action="" method="get">
-            	자 골라 봅시다<br/><br/>
-            	선택1<input type="checkbox" name="p6" value="c1"/><br/>
-            	선택2<input type="checkbox" name="p6" value="c2"/><br/>
-            	선택3<input type="checkbox" name="p6" value="c3"/><br/>
-            	선택4<input type="checkbox" name="p6" value="c4"/><br/><br/><br/>
-            	<button1 type="submit" name="p6_b1" id="p6_b1" onclick="location.href='p06_scheduleTraveling.html';">Submit</button1>
-            </form>
-        </div>
-    </div>
+   <div id="jb-container">
+	<center>
+      <div id="jb-header">
+        <h3>TODO LIST</h3>
+      </div>
+</center>
+      <div id="jb-content">
+
+
+<?php
+
+header("Content-Type: text/html; charset=UTF-8");
+
+  session_start();
+  if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+
+$is_logged= $_SESSION['is_logged'];
+
+if($is_logged=='YES'){
+$myusername = $_SESSION['id'];
+}
+
+
+	// Database 
+	define("DB_SERVER", "localhost");
+	define("DB_USER", "travelgo13temp");
+	define("DB_PASS", "tizen1818");
+	define("DB_NAME", "travelgo13temp");
+	// 1. Create a database connection
+	$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+	if ( !$connection ) {
+		die("Database connection failed: " . mysql_error());
+	}
+
+	// 2. Select a database to use ////NOT USED
+
+
+$mytask = 0;
+
+	mysqli_query($connection,"set names utf8");
+
+	//3. 
+	function setTask( $task ) {
+		global $connection;
+		global $myusername;
+		global $mytask;
+
+		
+		settasknum(); 
+
+		$mytask = $mytask+1;
+		$id = $myusername."+".$mytask;
+
+	
+
+		$query = "INSERT INTO todo (ID,contents,complete, visible,tasknum) VALUES ('$id',\"{$task}\",0, 1,'$mytask')";
+		$result = mysqli_query($connection ,$query);
+		#echo mysqli_error();
+	}
+
+
+	//4. Find the user's tasknum
+	function settasknum() {
+		global $connection;
+		global $myusername;
+		$id = $myusername."+";
+		
+		$temptask;
+		
+		$resulttask = mysqli_query($connection,"select * from todo  ORDER BY ID");
+		while($rowtask = mysqli_fetch_array($resulttask)){
+			if(strpos($rowtask[0],$id)!==false){
+					global $mytask;
+					$mytask = $rowtask[4];	
+					$temptask = $mytask;
+				
+			}
+			else{
+				$mytask = 0;
+			}		
+		}
+		
+		global $mytask;
+		$mytask = $temptask;
+		
+	}
+
+	//5.confirm
+	function confirm_query( $result_set ) {
+		if ( !$result_set ) {
+			die("Database query failed: " . mysql_error() );
+		}
+	}
+
+
+	function deleteRows ($taskNum ) {
+		global $connection;
+		global $myusername;
+		$id = $myusername."+";
+		//echo $taskNum;
+		$query1 = "SELECT * FROM todo";
+		$result = mysqli_query($connection ,$query1);
+		while($row = mysqli_fetch_array($result)){
+			if(strpos($row[0],$id)!==false){
+				
+				if(strpos($row[4],$taskNum)!==false){
+					$query2 = "DELETE FROM todo where tasknum = '$taskNum'";
+					$deleteresult = mysqli_query($connection,$query2);
+				}
+					
+			}
+			else{
+				//echo "cannot find!!";
+			}
+		}
+		
+	}
+	
+
+	# Displays All Visible Tasks
+	function getAllTask() {
+		global $connection;
+		global $myusername;
+		global $mytask;
+		
+		$id = $myusername."+";
+		//echo "hi getAllTask()";
+		$query = "SELECT * FROM todo  ORDER BY ID";
+		$result = mysqli_query($connection,$query);
+		
+		while ( $list = mysqli_fetch_array($result) ) {
+			if(strpos($list[0],$id)!==false){
+				#echo print_r($list) . "<br/>";
+				echo "<br/>";
+				echo $list[4]." : ".$list[1];
+				echo " @ " . $list[5] ;
+				echo "<br/>";
+			}
+		}
+
+	}
+
+	
+
+	# Check for task
+	if ( isset( $_POST['taskName'] ) && $_POST['taskName'] !== "" ) {		
+		$taskName = $_POST['taskName'];
+		#echo $taskName;
+		//settasknum();
+		setTask( $taskName );
+		$taskName = "";
+	}
+
+	# Check for hide task number
+	if ( isset( $_POST['num'] )&& $_POST['num']!=="" ) {
+		$taskNum = $_POST['num'];
+		deleteRows( $taskNum );
+		$taskNum="";
+	}
+
+
+	echo "<form name=\"input\" action=\"p06_scheduleTraveling.html\" method=\"post\" >";
+	echo "<input type=\"text\" name=\"taskName\" placeholder=\"Enter task\"/>";
+	echo "<br/>";
+	#echo "<label>Enter Task Number to Hide: ";
+	echo "<input type=\"text\" name=\"num\" placeholder=\"Enter task # to delete\"/>";	
+	echo "<input type=\"submit\" name=\"submit\" />";
+	echo "</form>";
+	echo "<br/><br/>";
+	echo "To-Do List: " . "<br/>";
+	echo getAllTask();
+	echo "<br/>";
+	
+?>
+
+<button type="button" name="php_b1" id="php_b1" onclick ="location.href='p03_list.html';">Back</button>
+	</div>
+	</div>
+
 </body>
-
 </html>
-

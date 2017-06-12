@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Tizen Mobile Web Basic Template" />
+    
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/main.js"></script>
+    
+    <style>
+  #jb-container {
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-header {
+    padding: 0px;
+    margin-bottom: 10px;
+    border: 1px solid #bcbcbc;
+  }
+  #jb-content {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #bcbcbc;
+  }
+
+  @media ( min-width: 481px ) {
+    #jb-container {
+      width: 940px;
+    }
+    #jb-content {
+      width: 580px;
+      float: left;
+    }
+
+  }
+</style>
+<title>Edit Profile</title>
+
+</head>
+<body>
+
+    <div id="jb-container">
+	<center>
+      	<div id="jb-header">
+        	<h2>Edit Profile</h2>
+      	</div>
+	<div id="jb-content">
+  	<div id="editProfile" class="page">
+        <div class="contents">
+            <?php
+
+header("Content-Type: text/html; charset=UTF-8");
+
+session_start();
+
+if(!isset($_SESSION['is_logged'])){
+  header('Location: ./index.html');
+}
+
+$is_logged= $_SESSION['is_logged'];
+
+if($is_logged=='YES'){
+$myusername = $_SESSION['id'];
+$message = $myusername.' Logged In.';
+}
+
+$Servername = "localhost";
+$Username = "travelgo13temp";
+$Password = "tizen1818";
+$Dbname = "travelgo13temp";
+
+// Create connection
+$conn = new mysqli($Servername, $Username, $Password, $Dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+mysqli_query($conn,"set names utf8");
+
+$sql = "SELECT * FROM users";
+$sql1 = "SELECT * FROM considerations";
+
+$query = mysqli_query($conn, $sql);
+$query = mysqli_query($conn, $sql1);
+
+$result = $conn->query($sql);
+$result1 = $conn->query($sql1);
+echo "<br>";
+if ($result->num_rows > 0) {
+
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        if($row["userID"] == $myusername){
+       echo "Name: " . $row["name"]. "<br>". "UserID: " . $row["userID"]. "<br>". "Password: " . $row["password"]. "<br><br>";
+        
+        }
+    }
+}
+echo "<br><br>";
+echo "Your Consideration: ";
+echo "<br><br>";
+
+if ($result1->num_rows > 0) {
+     while($row = $result1->fetch_assoc()) {
+        if($row["username"] == $myusername){
+       echo "1st: " . $row["first"]. "<br>". "2nd: " . $row["second"]. "<br>". "3rd: " . $row["third"]. "<br>";
+        }
+    }
+    
+} else {
+    echo "0 results";
+}
+echo "<br>";
+echo "<br>";
+    ?>
+
+  <button type="button" onclick="location.href='password_reset.html' "> Change Password </button><br/><br/>
+	<button type="button" onclick="location.href='p12_considerations.html' "> Change Consideration </button><br/><br/>
+	<button type="button" name="php_b1" id="php_b1" onclick ="location.href='p05_myPage.html';">  Back  </button>
+       	</div>
+	</div>
+	</div>
+        </div>
+	</div>
+	</center>
+ 
+
+</body>
+</html>
