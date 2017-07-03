@@ -1,1 +1,2 @@
-# TravelGO : Tizen Web application that Recommend Travel Destinations
+# TravelGO
+Tizen Web application that Recommend Travel Destinations
