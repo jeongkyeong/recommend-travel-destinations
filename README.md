@@ -47,5 +47,5 @@ By these selections, the system recommends the final filtered travel area.
 Near me is a function that uses the GPS and gets the user’s current location. 
 <br/><br/>
 
-## Author
+## Collaborators 
 JeongKyeong Kang, JungYun Eum
